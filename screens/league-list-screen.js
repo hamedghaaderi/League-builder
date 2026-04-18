@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import {
+  FlatList,
   Pressable,
   StyleSheet,
   Text,
@@ -9,6 +10,7 @@ import {
 } from "react-native";
 import GlobalStyles from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+import LeagueItem from "../components/leagues/league-item";
 
 const LeagueListScreen = () => {
   const [showAddOptions, setShowAddOptions] = useState(false);
@@ -37,7 +39,15 @@ const LeagueListScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.emptyContainer}>
+      <FlatList
+        data={["dfsafdfdf"]}
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View style={styles.listFooter} />}
+        renderItem={({ item }) => {
+          return <LeagueItem league={item} />;
+        }}
+      />
+      {/* <View style={styles.emptyContainer}>
         <Image
           source={require("../assets/images/empty-league.png")}
           style={styles.emptyImage}
@@ -51,7 +61,7 @@ const LeagueListScreen = () => {
           </View>
           ، یک لیگ جدید بساز.
         </Text>
-      </View>
+      </View> */}
       <Animated.View style={[styles.addButton, { transform: [{ rotate }] }]}>
         <Pressable onPress={handleAdd}>
           <Ionicons name="add" style={styles.addIcon} />
@@ -155,5 +165,10 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 18,
     color: GlobalStyles.colors.accent,
-  }
+  },
+  listFooter: {
+    height: 70,
+    width: "100%",
+    backgroundColor: GlobalStyles.colors.background,
+  },
 });
