@@ -11,7 +11,7 @@ import LeagueEditScreen from "./screens/leagues/league-edit-screen";
 import LeagueStandingsScreen from "./screens/leagues/league-standings-screen";
 import LeagueFixturesScreen from "./screens/leagues/league-fixtures-screen";
 import AboutDeveloperScreen from "./screens/settings/about-developer-screen";
-import ThemeScreen from "./screens/settings/theme-screen";
+import CreateTeamScreen from "./screens/settings/create-team-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
 import GlobalStyles from "./constants/colors";
@@ -122,10 +122,10 @@ export default function App() {
 
           {/* Setting Screens */}
           <Stack.Screen
-            name="Theme"
-            component={ThemeScreen}
+            name="createTeam"
+            component={CreateTeamScreen}
             options={{
-              title: "تم و استایل",
+              title: "افزودن تیم",
             }}
           />
           <Stack.Screen
