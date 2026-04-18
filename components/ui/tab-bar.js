@@ -1,44 +1,53 @@
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlobalStyles from "../../constants/colors";
+import { LinearGradient } from "expo-linear-gradient";
 
 const TabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.glassLayer} />
-      <View style={styles.tabsRow}>
-        {state.routes.map((route, index) => {
-          const {
-            options: { title },
-          } = descriptors[route.key];
-          const isFocused = state.index === index;
+    <>
+      <LinearGradient
+        colors={["rgba(255, 255, 255, 0)", GlobalStyles.colors.gradient]}
+        style={styles.gradientLayer}
+      />
+      <View style={styles.container}>
+        <View style={styles.glassLayer} />
+        <View style={styles.tabsRow}>
+          {state.routes.map((route, index) => {
+            const {
+              options: { title },
+            } = descriptors[route.key];
+            const isFocused = state.index === index;
 
-          return (
-            <TouchableOpacity
-              key={route.key}
-              style={[styles.tabButton, isFocused && styles.activeTabButton]}
-              onPress={() => navigation.navigate(route.name)}
-            >
-              <Text style={[styles.tabText, isFocused && styles.activeTabText]}>
-                {title}
-              </Text>
-              {title === "لیگ ها" && (
-                <Ionicons
-                  name="football"
-                  style={[styles.tabIcon, isFocused && styles.activeTabText]}
-                />
-              )}
-              {title === "تنظیمات" && (
-                <Ionicons
-                  name="settings"
-                  style={[styles.tabIcon, isFocused && styles.activeTabText]}
-                />
-              )}
-            </TouchableOpacity>
-          );
-        })}
+            return (
+              <TouchableOpacity
+                key={route.key}
+                style={[styles.tabButton, isFocused && styles.activeTabButton]}
+                onPress={() => navigation.navigate(route.name)}
+              >
+                <Text
+                  style={[styles.tabText, isFocused && styles.activeTabText]}
+                >
+                  {title}
+                </Text>
+                {title === "لیگ ها" && (
+                  <Ionicons
+                    name="trophy"
+                    style={[styles.tabIcon, isFocused && styles.activeTabText]}
+                  />
+                )}
+                {title === "تنظیمات" && (
+                  <Ionicons
+                    name="settings"
+                    style={[styles.tabIcon, isFocused && styles.activeTabText]}
+                  />
+                )}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
@@ -53,6 +62,13 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 35,
     overflow: "hidden",
+  },
+  gradientLayer: {
+    position: "absolute",
+    height: 70,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   glassLayer: {
     ...StyleSheet.absoluteFillObject,

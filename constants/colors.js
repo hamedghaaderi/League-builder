@@ -12,6 +12,8 @@ const GlobalStyles = {
     textPrimary: "#0A1033",
     textSecondary: "#1A1D26",
     border: "#E6E8EC",
+    gradient: "#adafb6ff",
+    red: "#e01c2cff"
   },
 };
 
