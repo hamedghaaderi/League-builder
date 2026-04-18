@@ -57,24 +57,28 @@ const LeagueListScreen = () => {
         <Text style={styles.emptySubtitle}>
           با زدن روی دکمه{" "}
           <View style={styles.emptyButton}>
-            <Ionicons name="add" style={styles.emptyIcon} />
+            <Ionicons name="add" size={10} color={GlobalStyles.colors.accent} />
           </View>
           ، یک لیگ جدید بساز.
         </Text>
       </View> */}
       <Animated.View style={[styles.addButton, { transform: [{ rotate }] }]}>
         <Pressable onPress={handleAdd}>
-          <Ionicons name="add" style={styles.addIcon} />
+          <Ionicons name="add" size={30} color={GlobalStyles.colors.accent} />
         </Pressable>
       </Animated.View>
       <Animated.View style={[styles.createButton, { transform: [{ scale }] }]}>
         <Pressable>
-          <Ionicons name="create" style={styles.icon} />
+          <Ionicons
+            name="create"
+            size={18}
+            color={GlobalStyles.colors.accent}
+          />
         </Pressable>
       </Animated.View>
       <Animated.View style={[styles.importButton, { transform: [{ scale }] }]}>
         <Pressable>
-          <Ionicons name="enter" style={styles.icon} />
+          <Ionicons name="enter" size={18} color={GlobalStyles.colors.accent} />
         </Pressable>
       </Animated.View>
     </View>
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.background,
-    paddingTop: 10,
+    paddingTop: 20,
     paddingHorizontal: 20,
     paddingBottom: 0,
     position: "relative",
@@ -121,10 +125,6 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary,
     borderRadius: "100%",
   },
-  emptyIcon: {
-    fontSize: 10,
-    color: GlobalStyles.colors.accent,
-  },
   addButton: {
     position: "absolute",
     right: 10,
@@ -135,10 +135,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: GlobalStyles.colors.primary,
     borderRadius: "100%",
-  },
-  addIcon: {
-    fontSize: 30,
-    color: GlobalStyles.colors.accent,
   },
   createButton: {
     position: "absolute",
@@ -161,10 +157,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: "100%",
     backgroundColor: GlobalStyles.colors.secondary,
-  },
-  icon: {
-    fontSize: 18,
-    color: GlobalStyles.colors.accent,
   },
   listFooter: {
     height: 70,

@@ -33,13 +33,23 @@ const TabBar = ({ state, descriptors, navigation }) => {
                 {title === "لیگ ها" && (
                   <Ionicons
                     name="trophy"
-                    style={[styles.tabIcon, isFocused && styles.activeTabText]}
+                    size={18}
+                    color={
+                      isFocused
+                        ? GlobalStyles.colors.accent
+                        : GlobalStyles.colors.surface
+                    }
                   />
                 )}
                 {title === "تنظیمات" && (
                   <Ionicons
                     name="settings"
-                    style={[styles.tabIcon, isFocused && styles.activeTabText]}
+                    size={18}
+                    color={
+                      isFocused
+                        ? GlobalStyles.colors.accent
+                        : GlobalStyles.colors.surface
+                    }
                   />
                 )}
               </TouchableOpacity>
@@ -98,10 +108,6 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.surface,
     fontSize: 16,
     fontWeight: "600",
-  },
-  tabIcon: {
-    fontSize: 18,
-    color: GlobalStyles.colors.surface,
   },
   activeTabButton: {
     backgroundColor: GlobalStyles.colors.primaryTransparent,

@@ -75,10 +75,10 @@ export default LeagueItem;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "center",
     backgroundColor: GlobalStyles.colors.border,
-    marginVertical: 10,
+    marginBottom: 20,
     borderRadius: 14,
     overflow: "hidden",
   },
@@ -95,15 +95,18 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "samim",
     fontSize: 22,
+    textAlign: "right",
     color: GlobalStyles.colors.textPrimary,
   },
   detailsRow: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "center",
+    gap: 3,
     marginTop: 6,
   },
   detailItem: {
     flexDirection: "row",
+    gap: 2,
     alignItems: "center",
   },
   detailText: {
@@ -120,9 +123,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   actions: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "center",
-    paddingRight: 12,
+    paddingLeft: 12,
   },
   iconButton: {
     padding: 8,
