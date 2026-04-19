@@ -5,7 +5,10 @@ import SettingItem from "../components/settings/setting-item";
 const SettingListScreen = () => {
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+      >
         <SettingItem icon="football" screen="createTeam">
           افزودن تیم
         </SettingItem>
@@ -26,6 +29,9 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.background,
     paddingTop: 20,
     paddingHorizontal: 20,
+  },
+  content: {
+    gap: 20,
   },
   listFooter: {
     height: 70,

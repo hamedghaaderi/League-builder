@@ -42,6 +42,7 @@ const LeagueListScreen = () => {
       <FlatList
         data={["dfsafdfdf"]}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.content}
         ListFooterComponent={<View style={styles.listFooter} />}
         renderItem={({ item }) => {
           return <LeagueItem league={item} />;
@@ -93,8 +94,10 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.background,
     paddingTop: 20,
     paddingHorizontal: 20,
-    paddingBottom: 0,
     position: "relative",
+  },
+  content: {
+    gap: 20,
   },
   emptyContainer: {
     flex: 1,

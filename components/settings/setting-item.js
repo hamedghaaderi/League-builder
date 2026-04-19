@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.border,
     paddingVertical: 12,
     paddingHorizontal: 15,
-    marginBottom: 20,
     borderRadius: 14,
     flexDirection: "row",
     alignItems: "center",

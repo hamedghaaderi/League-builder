@@ -60,11 +60,7 @@ const LeagueItem = ({ league }) => {
             pressed && { opacity: 0.5 },
           ]}
         >
-          <Ionicons
-            name="trash"
-            size={20}
-            color={GlobalStyles.colors.red}
-          />
+          <Ionicons name="trash" size={20} color={GlobalStyles.colors.red} />
         </Pressable>
       </View>
     </Pressable>
@@ -78,7 +74,6 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
     alignItems: "center",
     backgroundColor: GlobalStyles.colors.border,
-    marginBottom: 20,
     borderRadius: 14,
     overflow: "hidden",
   },
