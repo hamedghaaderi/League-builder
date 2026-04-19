@@ -6,8 +6,12 @@ const SettingListScreen = () => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <SettingItem icon="code-slash">درباره توسعه دهنده</SettingItem>
-        <SettingItem icon="football">افزودن تیم</SettingItem>
+        <SettingItem icon="football" screen="createTeam">
+          افزودن تیم
+        </SettingItem>
+        <SettingItem icon="code-slash" screen="Developer">
+          توسعه دهنده
+        </SettingItem>
         <View style={styles.listFooter} />
       </ScrollView>
     </View>

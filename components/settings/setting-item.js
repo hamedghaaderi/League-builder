@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlobalStyles from "../../constants/colors";
+import { useNavigation } from "@react-navigation/native";
 
-const SettingItem = ({ children, icon }) => {
+const SettingItem = ({ children, icon, screen }) => {
+  const { navigate } = useNavigation();
+
+  const onPress = () => {
+    navigate(screen);
+  };
+
   return (
-    <View style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <Ionicons
         name="arrow-back"
         size={18}
@@ -14,7 +21,7 @@ const SettingItem = ({ children, icon }) => {
         <Text style={styles.text}>{children}</Text>
         <Ionicons name={icon} size={18} color={GlobalStyles.colors.accentAlt} />
       </View>
-    </View>
+    </Pressable>
   );
 };
 

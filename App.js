@@ -10,7 +10,7 @@ import LeagueScreen from "./screens/leagues/league-screen";
 import LeagueEditScreen from "./screens/leagues/league-edit-screen";
 import LeagueStandingsScreen from "./screens/leagues/league-standings-screen";
 import LeagueFixturesScreen from "./screens/leagues/league-fixtures-screen";
-import AboutDeveloperScreen from "./screens/settings/about-developer-screen";
+import DeveloperScreen from "./screens/settings/developer-screen";
 import CreateTeamScreen from "./screens/settings/create-team-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
@@ -68,6 +68,7 @@ export default function App() {
             headerTintColor: GlobalStyles.colors.accent,
             headerTitleStyle: { fontFamily: "samim" },
             headerTitleAlign: "center",
+            animation: "fade",
           }}
         >
           <Stack.Screen
@@ -129,10 +130,10 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="AboutDeveloper"
-            component={AboutDeveloperScreen}
+            name="Developer"
+            component={DeveloperScreen}
             options={{
-              title: "درباره توسعه دهنده",
+              title: "توسعه دهنده",
             }}
           />
         </Stack.Navigator>
