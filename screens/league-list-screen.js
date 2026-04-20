@@ -40,13 +40,14 @@ const LeagueListScreen = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={["dfsafdfdf"]}
+        data={["", "", "", "", "", "", ""]}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
         ListFooterComponent={<View style={styles.listFooter} />}
         renderItem={({ item }) => {
           return <LeagueItem league={item} />;
         }}
+        key={(item, index) => index}
       />
       {/* <View style={styles.emptyContainer}>
         <Image
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: GlobalStyles.colors.primary,
-    borderRadius: "100%",
+    borderRadius: 30,
   },
   createButton: {
     position: "absolute",
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 40,
     height: 40,
-    borderRadius: "100%",
+    borderRadius: 20,
     backgroundColor: GlobalStyles.colors.secondary,
   },
   importButton: {
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 40,
     height: 40,
-    borderRadius: "100%",
+    borderRadius: 20,
     backgroundColor: GlobalStyles.colors.secondary,
   },
   listFooter: {
