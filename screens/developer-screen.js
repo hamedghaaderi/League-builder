@@ -7,11 +7,11 @@ import {
   Pressable,
   Linking,
 } from "react-native";
-import GlobalStyles from "../../constants/colors";
-import Linkedin from "../../components/logos/linkedin";
-import Github from "../../components/logos/github";
-import Instagram from "../../components/logos/instagram";
-import Whatsapp from "../../components/logos/whatsapp";
+import GlobalStyles from "../constants/colors";
+import Linkedin from "../components/logos/linkedin";
+import Github from "../components/logos/github";
+import Instagram from "../components/logos/instagram";
+import Whatsapp from "../components/logos/whatsapp";
 
 const DeveloperScreen = () => {
   const goToLink = (url) => {
@@ -25,7 +25,7 @@ const DeveloperScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         <Image
-          source={require("../../assets/images/profile.png")}
+          source={require("../assets/images/profile.png")}
           style={styles.profile}
           resizeMode="contain"
         />
@@ -80,6 +80,7 @@ const DeveloperScreen = () => {
             </Pressable>
           </View>
         </View>
+        <View style={styles.listFooter} />
       </ScrollView>
     </View>
   );
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.background,
-    padding: 20,
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   content: {
     gap: 20,
@@ -138,5 +140,10 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     justifyContent: "center",
+  },
+  listFooter: {
+    height: 70,
+    width: "100%",
+    backgroundColor: GlobalStyles.colors.background,
   },
 });

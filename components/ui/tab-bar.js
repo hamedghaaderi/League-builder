@@ -41,9 +41,9 @@ const TabBar = ({ state, descriptors, navigation }) => {
                     }
                   />
                 )}
-                {title === "تنظیمات" && (
+                {title === "توسعه دهنده" && (
                   <Ionicons
-                    name="settings"
+                    name="code-slash"
                     size={18}
                     color={
                       isFocused

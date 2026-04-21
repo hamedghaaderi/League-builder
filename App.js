@@ -3,15 +3,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LeagueListScreen from "./screens/league-list-screen";
-import SettingListScreen from "./screens/setting-list-screen";
 import LeagueCreateScreen from "./screens/leagues/league-create-screen";
 import LeagueImportScreen from "./screens/leagues/league-import-screen";
 import LeagueScreen from "./screens/leagues/league-screen";
 import LeagueEditScreen from "./screens/leagues/league-edit-screen";
 import LeagueStandingsScreen from "./screens/leagues/league-standings-screen";
 import LeagueFixturesScreen from "./screens/leagues/league-fixtures-screen";
-import DeveloperScreen from "./screens/settings/developer-screen";
-import CreateTeamScreen from "./screens/settings/create-team-screen";
+import DeveloperScreen from "./screens/developer-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
 import GlobalStyles from "./constants/colors";
@@ -41,10 +39,10 @@ function Tabs() {
         }}
       />
       <BottomTabs.Screen
-        name="SettingList"
-        component={SettingListScreen}
+        name="Developer"
+        component={DeveloperScreen}
         options={{
-          title: "تنظیمات",
+          title: "توسعه دهنده",
         }}
       />
     </BottomTabs.Navigator>
@@ -118,22 +116,6 @@ export default function App() {
             component={LeagueFixturesScreen}
             options={{
               title: "بازی ها",
-            }}
-          />
-
-          {/* Setting Screens */}
-          <Stack.Screen
-            name="createTeam"
-            component={CreateTeamScreen}
-            options={{
-              title: "افزودن تیم",
-            }}
-          />
-          <Stack.Screen
-            name="Developer"
-            component={DeveloperScreen}
-            options={{
-              title: "توسعه دهنده",
             }}
           />
         </Stack.Navigator>
