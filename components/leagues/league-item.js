@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   rightBar: {
-    width: 5,
+    width: 6,
     height: "100%",
     backgroundColor: GlobalStyles.colors.primary,
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     gap: 30,
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingVertical: 12,
   },
   informations: {
     flex: 1,
@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: "row-reverse",
     alignItems: "center",
-    gap: 14,
+    gap: 12,
   },
 });

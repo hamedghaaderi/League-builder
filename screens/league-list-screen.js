@@ -72,7 +72,7 @@ const LeagueListScreen = () => {
       <Animated.View style={[styles.createButton, { transform: [{ scale }] }]}>
         <Pressable>
           <Ionicons
-            name="create"
+            name="pencil"
             size={18}
             color={GlobalStyles.colors.accent}
           />
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   content: {
-    gap: 20,
+    gap: 15,
   },
   emptyContainer: {
     flex: 1,
