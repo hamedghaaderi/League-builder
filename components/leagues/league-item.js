@@ -1,10 +1,17 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const LeagueItem = ({ league }) => {
+  const { navigate } = useNavigation();
+
+  const onItemPress = () => {
+    navigate("League");
+  };
+
   return (
-    <Pressable style={styles.container}>
+    <Pressable onPress={onItemPress} style={styles.container}>
       <View style={styles.rightBar} />
       <View style={styles.content}>
         <View style={styles.informations}>

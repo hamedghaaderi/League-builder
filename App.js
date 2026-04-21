@@ -7,12 +7,12 @@ import LeagueCreateScreen from "./screens/leagues/league-create-screen";
 import LeagueImportScreen from "./screens/leagues/league-import-screen";
 import LeagueScreen from "./screens/leagues/league-screen";
 import LeagueEditScreen from "./screens/leagues/league-edit-screen";
-import LeagueStandingsScreen from "./screens/leagues/league-standings-screen";
-import LeagueFixturesScreen from "./screens/leagues/league-fixtures-screen";
 import DeveloperScreen from "./screens/developer-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
 import GlobalStyles from "./constants/colors";
+import { Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -79,9 +79,19 @@ export default function App() {
           <Stack.Screen
             name="League"
             component={LeagueScreen}
-            options={{
-              title: "لیگ",
-            }}
+            options={({ navigation }) => ({
+              title: "",
+              headerShadowVisible: false,
+              headerRight: ({ tintColor }) => (
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate("LeagueEdit");
+                  }}
+                >
+                  <Ionicons name="pencil" size={20} color={tintColor} />
+                </Pressable>
+              ),
+            })}
           />
           <Stack.Screen
             name="LeagueCreate"
@@ -102,20 +112,6 @@ export default function App() {
             component={LeagueEditScreen}
             options={{
               title: "ویرایش",
-            }}
-          />
-          <Stack.Screen
-            name="LeagueStandings"
-            component={LeagueStandingsScreen}
-            options={{
-              title: "جدول",
-            }}
-          />
-          <Stack.Screen
-            name="LeagueFixtures"
-            component={LeagueFixturesScreen}
-            options={{
-              title: "بازی ها",
             }}
           />
         </Stack.Navigator>
