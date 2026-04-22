@@ -4,15 +4,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LeagueListScreen from "./screens/league-list-screen";
 import LeagueCreateScreen from "./screens/leagues/league-create-screen";
-import LeagueImportScreen from "./screens/leagues/league-import-screen";
 import LeagueScreen from "./screens/leagues/league-screen";
-import LeagueEditScreen from "./screens/leagues/league-edit-screen";
 import DeveloperScreen from "./screens/developer-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
 import GlobalStyles from "./constants/colors";
-import { Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -79,39 +75,16 @@ export default function App() {
           <Stack.Screen
             name="League"
             component={LeagueScreen}
-            options={({ navigation }) => ({
+            options={{
               title: "",
               headerShadowVisible: false,
-              headerRight: ({ tintColor }) => (
-                <Pressable
-                  onPress={() => {
-                    navigation.navigate("LeagueEdit");
-                  }}
-                >
-                  <Ionicons name="pencil" size={20} color={tintColor} />
-                </Pressable>
-              ),
-            })}
+            }}
           />
           <Stack.Screen
             name="LeagueCreate"
             component={LeagueCreateScreen}
             options={{
-              title: "ساخت لیگ",
-            }}
-          />
-          <Stack.Screen
-            name="LeagueImport"
-            component={LeagueImportScreen}
-            options={{
-              title: "وارد کردن لیگ",
-            }}
-          />
-          <Stack.Screen
-            name="LeagueEdit"
-            component={LeagueEditScreen}
-            options={{
-              title: "ویرایش",
+              title: "ساخت لیگ جدید",
             }}
           />
         </Stack.Navigator>

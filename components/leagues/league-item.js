@@ -29,7 +29,7 @@ const LeagueItem = ({ league }) => {
             <View style={styles.detailsRow}>
               <View style={styles.detailItem}>
                 <Ionicons
-                  name="people"
+                  name="people-outline"
                   size={16}
                   color={GlobalStyles.colors.accentAlt}
                 />

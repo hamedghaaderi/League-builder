@@ -11,9 +11,11 @@ import {
 import GlobalStyles from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import LeagueItem from "../components/leagues/league-item";
+import ImportModal from "../components/modals/import-modal";
 
-const LeagueListScreen = () => {
+const LeagueListScreen = ({ navigation }) => {
   const [showAddOptions, setShowAddOptions] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
 
   const rotateAnim = useRef(new Animated.Value(0)).current;
 
@@ -25,9 +27,6 @@ const LeagueListScreen = () => {
     inputRange: [0, 1],
     outputRange: [0, 1],
   });
-  const handleAdd = () => {
-    setShowAddOptions((_prev) => !_prev);
-  };
 
   useEffect(() => {
     Animated.timing(rotateAnim, {
@@ -38,18 +37,19 @@ const LeagueListScreen = () => {
   }, [showAddOptions]);
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={["", "", "", "", "", "", ""]}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
-        ListFooterComponent={<View style={styles.listFooter} />}
-        renderItem={({ item }) => {
-          return <LeagueItem league={item} />;
-        }}
-        key={(item, index) => index}
-      />
-      {/* <View style={styles.emptyContainer}>
+    <>
+      <View style={styles.container}>
+        <FlatList
+          data={["", "", "", "", "", "", ""]}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.content}
+          ListFooterComponent={<View style={styles.listFooter} />}
+          renderItem={({ item }) => {
+            return <LeagueItem league={item} />;
+          }}
+          key={(item, index) => index}
+        />
+        {/* <View style={styles.emptyContainer}>
         <Image
           source={require("../assets/images/empty-league.png")}
           style={styles.emptyImage}
@@ -64,26 +64,39 @@ const LeagueListScreen = () => {
           ، یک لیگ جدید بساز.
         </Text>
       </View> */}
-      <Animated.View style={[styles.addButton, { transform: [{ rotate }] }]}>
-        <Pressable onPress={handleAdd}>
-          <Ionicons name="add" size={30} color={GlobalStyles.colors.accent} />
-        </Pressable>
-      </Animated.View>
-      <Animated.View style={[styles.createButton, { transform: [{ scale }] }]}>
-        <Pressable>
-          <Ionicons
-            name="pencil"
-            size={18}
-            color={GlobalStyles.colors.accent}
-          />
-        </Pressable>
-      </Animated.View>
-      <Animated.View style={[styles.importButton, { transform: [{ scale }] }]}>
-        <Pressable>
-          <Ionicons name="enter" size={18} color={GlobalStyles.colors.accent} />
-        </Pressable>
-      </Animated.View>
-    </View>
+        <Animated.View style={[styles.addButton, { transform: [{ rotate }] }]}>
+          <Pressable onPress={() => setShowAddOptions((_prev) => !_prev)}>
+            <Ionicons name="add" size={30} color={GlobalStyles.colors.accent} />
+          </Pressable>
+        </Animated.View>
+        <Animated.View
+          style={[styles.createButton, { transform: [{ scale }] }]}
+        >
+          <Pressable onPress={() => navigation.navigate("LeagueCreate")}>
+            <Ionicons
+              name="create-outline"
+              size={18}
+              color={GlobalStyles.colors.accent}
+            />
+          </Pressable>
+        </Animated.View>
+        <Animated.View
+          style={[styles.importButton, { transform: [{ scale }] }]}
+        >
+          <Pressable onPress={() => setShowImportModal(true)}>
+            <Ionicons
+              name="enter-outline"
+              size={18}
+              color={GlobalStyles.colors.accent}
+            />
+          </Pressable>
+        </Animated.View>
+      </View>
+      <ImportModal
+        visibility={showImportModal}
+        onCancel={() => setShowImportModal(false)}
+      />
+    </>
   );
 };
 
@@ -95,7 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.background,
     paddingTop: 20,
     paddingHorizontal: 20,
-    position: "relative",
   },
   content: {
     gap: 15,

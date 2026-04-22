@@ -10,7 +10,7 @@ import {
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 
-const DeleteModal = ({ visibility, onCancel }) => {
+const EditModal = ({ visibility, onCancel }) => {
   return (
     <Modal
       visible={visibility}
@@ -28,18 +28,18 @@ const DeleteModal = ({ visibility, onCancel }) => {
             <View style={styles.content}>
               <View style={styles.icon}>
                 <Ionicons
-                  name="trash"
+                  name="pencil"
                   size={25}
-                  color={GlobalStyles.colors.red}
+                  color={GlobalStyles.colors.accentAlt}
                 />
               </View>
-              <Text style={styles.description}>
-                <Text style={styles.title}>لیگ اول</Text> حذف شود؟
-              </Text>
+              {/* محتوای  این مودال */}
             </View>
             <View style={styles.actions}>
-              <Pressable style={[styles.button, styles.deleteButton]}>
-                <Text style={[styles.buttonText, styles.deleteText]}>حذف</Text>
+              <Pressable style={[styles.button, styles.confirmButton]}>
+                <Text style={[styles.buttonText, styles.confirmText]}>
+                  تایید
+                </Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
@@ -57,7 +57,7 @@ const DeleteModal = ({ visibility, onCancel }) => {
   );
 };
 
-export default DeleteModal;
+export default EditModal;
 
 const styles = StyleSheet.create({
   backdrop: {
@@ -79,17 +79,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     position: "relative",
     alignItems: "center",
-  },
-  description: {
-    fontFamily: "samim",
-    fontSize: 17,
-    textAlign: "center",
-    color: GlobalStyles.colors.textPrimary,
-  },
-  title: {
-    fontFamily: "samim",
-    fontSize: 17,
-    color: GlobalStyles.colors.red,
   },
   icon: {
     position: "absolute",
@@ -115,13 +104,13 @@ const styles = StyleSheet.create({
     fontFamily: "samim",
     fontSize: 15,
   },
-  deleteButton: {
-    backgroundColor: GlobalStyles.colors.red,
+  confirmButton: {
+    backgroundColor: GlobalStyles.colors.accentAlt,
   },
   cancelButton: {
     backgroundColor: GlobalStyles.colors.background,
   },
-  deleteText: {
+  confirmText: {
     color: GlobalStyles.colors.surface,
   },
   canceltext: {

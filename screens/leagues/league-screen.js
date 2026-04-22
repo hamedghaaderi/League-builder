@@ -2,9 +2,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useState, useTransition } from "react";
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+import Standings from "../../components/leagues/standings";
+import Fixtures from "../../components/leagues/fixtures";
+import EditModal from "../../components/modals/edit-modal";
 
 const LeagueScreen = () => {
   const [selectedTab, setSelectedTab] = useState("standings");
+  const [showEditModal, setShowEditModal] = useState(false);
   const [, startTransition] = useTransition();
 
   const handleTabChange = (tab) => {
@@ -27,7 +31,7 @@ const LeagueScreen = () => {
         <View style={styles.detailsRow}>
           <View style={styles.detailItem}>
             <Ionicons
-              name="people"
+              name="people-outline"
               size={16}
               color={GlobalStyles.colors.accent}
             />
@@ -46,40 +50,54 @@ const LeagueScreen = () => {
           </View>
         </View>
       </View>
-      <View style={styles.tabs}>
-        <Pressable
-          onPress={() => handleTabChange("standings")}
-          style={[
-            styles.tabItem,
-            selectedTab === "standings" && styles.activeTabItem,
-          ]}
-        >
-          <Text
+      <View style={styles.tabsWrapper}>
+        <View style={styles.tabs}>
+          <Pressable
+            onPress={() => handleTabChange("standings")}
             style={[
-              styles.tabText,
-              selectedTab === "standings" && styles.activeTabText,
+              styles.tabItem,
+              selectedTab === "standings" && styles.activeTabItem,
             ]}
           >
-            جدول
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={() => handleTabChange("fixtures")}
-          style={[
-            styles.tabItem,
-            selectedTab === "fixtures" && styles.activeTabItem,
-          ]}
-        >
-          <Text
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === "standings" && styles.activeTabText,
+              ]}
+            >
+              جدول
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={() => handleTabChange("fixtures")}
             style={[
-              styles.tabText,
-              selectedTab === "fixtures" && styles.activeTabText,
+              styles.tabItem,
+              selectedTab === "fixtures" && styles.activeTabItem,
             ]}
           >
-            بازی ها
-          </Text>
-        </Pressable>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === "fixtures" && styles.activeTabText,
+              ]}
+            >
+              بازی ها
+            </Text>
+          </Pressable>
+        </View>
       </View>
+      {selectedTab === "standings" && <Standings />}
+      {selectedTab === "fixtures" && <Fixtures />}
+      <Pressable
+        onPress={() => setShowEditModal(true)}
+        style={styles.editButton}
+      >
+        <Ionicons name="pencil" size={30} color={GlobalStyles.colors.surface} />
+      </Pressable>
+      <EditModal
+        visibility={showEditModal}
+        onCancel={() => setShowEditModal(false)}
+      />
     </>
   );
 };
@@ -128,6 +146,9 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.accentAlt,
     marginHorizontal: 10,
   },
+  tabsWrapper: {
+    backgroundColor: GlobalStyles.colors.background,
+  },
   tabs: {
     backgroundColor: GlobalStyles.colors.primary,
     paddingBottom: 10,
@@ -141,7 +162,7 @@ const styles = StyleSheet.create({
   tabItem: {
     flex: 1,
     paddingVertical: 8,
-    borderRadius: 40,
+    borderRadius: 25,
     alignItems: "center",
   },
   tabText: {
@@ -154,5 +175,16 @@ const styles = StyleSheet.create({
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
+  },
+  editButton: {
+    position: "absolute",
+    right: 10,
+    bottom: 10,
+    width: 60,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: GlobalStyles.colors.accentAlt,
+    borderRadius: 30,
   },
 });
