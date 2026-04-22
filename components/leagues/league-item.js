@@ -1,65 +1,86 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Share, StyleSheet, Text, View, Modal } from "react-native";
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
+import DeleteModal from "../modals/delete-modal";
 
 const LeagueItem = ({ league }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { navigate } = useNavigation();
 
   const onItemPress = () => {
     navigate("League");
   };
+  const onSharePress = async () => {
+    try {
+      await Share.share({ message: "test share" });
+    } catch (err) {}
+    console.error("Share error: ", err);
+  };
 
   return (
-    <Pressable onPress={onItemPress} style={styles.container}>
-      <View style={styles.rightBar} />
-      <View style={styles.content}>
-        <View style={styles.informations}>
-          <Text style={styles.title}>لیگ اول</Text>
-          <View style={styles.detailsRow}>
-            <View style={styles.detailItem}>
-              <Ionicons
-                name="people"
-                size={16}
-                color={GlobalStyles.colors.accentAlt}
-              />
-              <Text style={styles.detailText}>4 تیم</Text>
-            </View>
-            <View style={styles.dot} />
-            <View style={styles.detailItem}>
-              <Ionicons
-                name={true ? "repeat" : "arrow-forward"}
-                size={16}
-                color={GlobalStyles.colors.accentAlt}
-              />
-              <Text style={styles.detailText}>
-                {true ? "رفت و برگشت" : "تک بازی"}
-              </Text>
+    <>
+      <Pressable onPress={onItemPress} style={styles.container}>
+        <View style={styles.rightBar} />
+        <View style={styles.content}>
+          <View style={styles.informations}>
+            <Text style={styles.title}>لیگ اول</Text>
+            <View style={styles.detailsRow}>
+              <View style={styles.detailItem}>
+                <Ionicons
+                  name="people"
+                  size={16}
+                  color={GlobalStyles.colors.accentAlt}
+                />
+                <Text style={styles.detailText}>4 تیم</Text>
+              </View>
+              <View style={styles.dot} />
+              <View style={styles.detailItem}>
+                <Ionicons
+                  name={true ? "repeat" : "arrow-forward"}
+                  size={16}
+                  color={GlobalStyles.colors.accentAlt}
+                />
+                <Text style={styles.detailText}>
+                  {true ? "رفت و برگشت" : "تک بازی"}
+                </Text>
+              </View>
             </View>
           </View>
+          <View style={styles.actions}>
+            <Pressable
+              onPress={(e) => {
+                e.stopPropagation();
+                onSharePress();
+              }}
+            >
+              <Ionicons
+                name="share-social"
+                size={22}
+                color={GlobalStyles.colors.secondary}
+              />
+            </Pressable>
+            <Pressable
+              onPress={(e) => {
+                e.stopPropagation();
+                setShowDeleteModal(true);
+              }}
+            >
+              <Ionicons
+                name="trash"
+                size={22}
+                color={GlobalStyles.colors.red}
+              />
+            </Pressable>
+          </View>
         </View>
-        <View style={styles.actions}>
-          <Pressable
-            onPress={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <Ionicons
-              name="share-social"
-              size={20}
-              color={GlobalStyles.colors.secondary}
-            />
-          </Pressable>
-          <Pressable
-            onPress={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <Ionicons name="trash" size={20} color={GlobalStyles.colors.red} />
-          </Pressable>
-        </View>
-      </View>
-    </Pressable>
+      </Pressable>
+      <DeleteModal
+        visibility={showDeleteModal}
+        onCancel={() => setShowDeleteModal(false)}
+      />
+    </>
   );
 };
 
