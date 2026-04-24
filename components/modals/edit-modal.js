@@ -6,11 +6,24 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Pressable,
+  TextInput,
 } from "react-native";
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+import { Controller, useForm } from "react-hook-form";
 
 const EditModal = ({ visibility, onCancel }) => {
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      title: "لیگ اول",
+    },
+  });
+
   return (
     <Modal
       visible={visibility}
@@ -33,7 +46,30 @@ const EditModal = ({ visibility, onCancel }) => {
                   color={GlobalStyles.colors.accentAlt}
                 />
               </View>
-              {/* محتوای  این مودال */}
+              <Controller
+                name="title"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({ field: { onChange, value } }) => {
+                  return (
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.description}>
+                        <Text style={styles.title}>عنوان لیگ</Text> را ویرایش
+                        کنید:
+                      </Text>
+                      <TextInput
+                        style={styles.input}
+                        onChangeText={onChange}
+                        value={value}
+                        autoCorrect={false}
+                        placeholder="عنوان"
+                      />
+                    </View>
+                  );
+                }}
+              />
             </View>
             <View style={styles.actions}>
               <Pressable style={[styles.button, styles.confirmButton]}>
@@ -87,6 +123,33 @@ const styles = StyleSheet.create({
     top: -27,
     padding: 12,
     elevation: 4,
+  },
+  inputContainer: {
+    width: "100%",
+    flexDirection: "column",
+    gap: 15,
+  },
+  description: {
+    fontFamily: "samim",
+    fontSize: 17,
+    textAlign: "center",
+    color: GlobalStyles.colors.textPrimary,
+  },
+  title: {
+    fontFamily: "samim",
+    fontSize: 17,
+    color: GlobalStyles.colors.accentAlt,
+  },
+  input: {
+    fontFamily: "samim",
+    fontSize: 15,
+    direction: "rtl",
+    textAlign: "right",
+    backgroundColor: GlobalStyles.colors.border,
+    borderRadius: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    color: GlobalStyles.colors.textPrimary,
   },
   actions: {
     flexDirection: "row",
