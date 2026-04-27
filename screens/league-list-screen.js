@@ -92,10 +92,12 @@ const LeagueListScreen = ({ navigation }) => {
           </Pressable>
         </Animated.View>
       </View>
-      <ImportModal
-        visibility={showImportModal}
-        onCancel={() => setShowImportModal(false)}
-      />
+      {showImportModal && (
+        <ImportModal
+          visibility={showImportModal}
+          onCancel={() => setShowImportModal(false)}
+        />
+      )}
     </>
   );
 };

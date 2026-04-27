@@ -76,10 +76,12 @@ const LeagueItem = ({ league }) => {
           </View>
         </View>
       </Pressable>
-      <DeleteModal
-        visibility={showDeleteModal}
-        onCancel={() => setShowDeleteModal(false)}
-      />
+      {showDeleteModal && (
+        <DeleteModal
+          visibility={showDeleteModal}
+          onCancel={() => setShowDeleteModal(false)}
+        />
+      )}
     </>
   );
 };

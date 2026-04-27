@@ -94,10 +94,12 @@ const LeagueScreen = () => {
       >
         <Ionicons name="pencil" size={30} color={GlobalStyles.colors.surface} />
       </Pressable>
-      <EditModal
-        visibility={showEditModal}
-        onCancel={() => setShowEditModal(false)}
-      />
+      {showEditModal && (
+        <EditModal
+          visibility={showEditModal}
+          onCancel={() => setShowEditModal(false)}
+        />
+      )}
     </>
   );
 };
