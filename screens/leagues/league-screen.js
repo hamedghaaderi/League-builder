@@ -1,19 +1,20 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import Standings from "../../components/leagues/standings";
 import Fixtures from "../../components/leagues/fixtures";
+import { SceneMap, TabView } from "react-native-tab-view";
 
 const LeagueScreen = () => {
-  const [selectedTab, setSelectedTab] = useState("standings");
-  const [, startTransition] = useTransition();
+  const [index, setIndex] = useState(1);
 
-  const handleTabChange = (tab) => {
-    startTransition(() => {
-      setSelectedTab(tab);
-    });
-  };
+  const routes = [{ key: "fixtures" }, { key: "standings" }];
+
+  const renderScene = SceneMap({
+    fixtures: Fixtures,
+    standings: Standings,
+  });
 
   return (
     <>
@@ -51,41 +52,29 @@ const LeagueScreen = () => {
       <View style={styles.tabsWrapper}>
         <View style={styles.tabs}>
           <Pressable
-            onPress={() => handleTabChange("standings")}
-            style={[
-              styles.tabItem,
-              selectedTab === "standings" && styles.activeTabItem,
-            ]}
+            onPress={() => setIndex(1)}
+            style={[styles.tabItem, index === 1 && styles.activeTabItem]}
           >
-            <Text
-              style={[
-                styles.tabText,
-                selectedTab === "standings" && styles.activeTabText,
-              ]}
-            >
+            <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
               جدول
             </Text>
           </Pressable>
           <Pressable
-            onPress={() => handleTabChange("fixtures")}
-            style={[
-              styles.tabItem,
-              selectedTab === "fixtures" && styles.activeTabItem,
-            ]}
+            onPress={() => setIndex(0)}
+            style={[styles.tabItem, index === 0 && styles.activeTabItem]}
           >
-            <Text
-              style={[
-                styles.tabText,
-                selectedTab === "fixtures" && styles.activeTabText,
-              ]}
-            >
+            <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
               بازی ها
             </Text>
           </Pressable>
         </View>
       </View>
-      {selectedTab === "standings" && <Standings />}
-      {selectedTab === "fixtures" && <Fixtures />}
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={(i) => setIndex(i)}
+        renderTabBar={() => null}
+      />
     </>
   );
 };
