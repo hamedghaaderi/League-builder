@@ -47,7 +47,7 @@ const LeagueListScreen = ({ navigation }) => {
           renderItem={({ item }) => {
             return <LeagueItem league={item} />;
           }}
-          key={(item, index) => index}
+          keyExtractor={(item, index) => index}
         />
         {/* <View style={styles.emptyContainer}>
         <Image
