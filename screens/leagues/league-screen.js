@@ -4,11 +4,9 @@ import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import Standings from "../../components/leagues/standings";
 import Fixtures from "../../components/leagues/fixtures";
-import EditModal from "../../components/modals/edit-modal";
 
 const LeagueScreen = () => {
   const [selectedTab, setSelectedTab] = useState("standings");
-  const [showEditModal, setShowEditModal] = useState(false);
   const [, startTransition] = useTransition();
 
   const handleTabChange = (tab) => {
@@ -88,18 +86,6 @@ const LeagueScreen = () => {
       </View>
       {selectedTab === "standings" && <Standings />}
       {selectedTab === "fixtures" && <Fixtures />}
-      <Pressable
-        onPress={() => setShowEditModal(true)}
-        style={styles.editButton}
-      >
-        <Ionicons name="pencil" size={30} color={GlobalStyles.colors.surface} />
-      </Pressable>
-      {showEditModal && (
-        <EditModal
-          visibility={showEditModal}
-          onCancel={() => setShowEditModal(false)}
-        />
-      )}
     </>
   );
 };
@@ -177,16 +163,5 @@ const styles = StyleSheet.create({
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
-  },
-  editButton: {
-    position: "absolute",
-    right: 10,
-    bottom: 10,
-    width: 60,
-    height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: GlobalStyles.colors.accentAlt,
-    borderRadius: 30,
   },
 });

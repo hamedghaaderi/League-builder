@@ -9,6 +9,10 @@ import DeveloperScreen from "./screens/developer-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
 import GlobalStyles from "./constants/colors";
+import { Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
+import EditModal from "./components/modals/edit-modal";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -78,6 +82,23 @@ export default function App() {
             options={{
               title: "",
               headerShadowVisible: false,
+              headerRight: ({ tintColor }) => {
+                const [showEditModal, setShowEditModal] = useState(false);
+
+                return (
+                  <>
+                    <Pressable onPress={() => setShowEditModal(true)}>
+                      <Ionicons name="pencil" size={22} color={tintColor} />
+                    </Pressable>
+                    {showEditModal && (
+                      <EditModal
+                        visibility={showEditModal}
+                        onCancel={() => setShowEditModal(false)}
+                      />
+                    )}
+                  </>
+                );
+              },
             }}
           />
           <Stack.Screen

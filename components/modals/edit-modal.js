@@ -43,7 +43,7 @@ const EditModal = ({ visibility, onCancel }) => {
                 <Ionicons
                   name="pencil"
                   size={25}
-                  color={GlobalStyles.colors.accentAlt}
+                  color={GlobalStyles.colors.accent}
                 />
               </View>
               <Controller
@@ -73,9 +73,7 @@ const EditModal = ({ visibility, onCancel }) => {
             </View>
             <View style={styles.actions}>
               <Pressable style={[styles.button, styles.confirmButton]}>
-                <Text style={[styles.buttonText, styles.confirmText]}>
-                  تایید
-                </Text>
+                <Text style={[styles.buttonText, styles.confirmText]}>ثبت</Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
@@ -138,7 +136,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "samim",
     fontSize: 17,
-    color: GlobalStyles.colors.accentAlt,
+    color: GlobalStyles.colors.accent,
   },
   input: {
     fontFamily: "samim",
@@ -146,7 +144,7 @@ const styles = StyleSheet.create({
     direction: "rtl",
     textAlign: "right",
     borderWidth: 1,
-    borderColor: GlobalStyles.colors.accentAlt,
+    borderColor: GlobalStyles.colors.accent,
     borderRadius: 14,
     paddingVertical: 10,
     paddingHorizontal: 15,
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   confirmButton: {
-    backgroundColor: GlobalStyles.colors.accentAlt,
+    backgroundColor: GlobalStyles.colors.accent,
   },
   cancelButton: {
     backgroundColor: GlobalStyles.colors.background,

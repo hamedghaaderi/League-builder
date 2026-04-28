@@ -76,8 +76,6 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.border,
   },
   content: {
-    flexDirection: "column",
-    alignItems: "center",
     gap: 13,
   },
   header: {
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     gap: 20,
     paddingBottom: 10,
     borderBottomWidth: 0.5,
-    borderColor: GlobalStyles.colors.primary,
+    borderColor: GlobalStyles.colors.accentAlt,
     backgroundColor: GlobalStyles.colors.border,
   },
   detailsRow: {

@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
   rank: {
     fontFamily: "samim",
     fontSize: 11,
-    color: GlobalStyles.colors.textSecondary,
+    color: GlobalStyles.colors.accentAlt,
   },
 });
