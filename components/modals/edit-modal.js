@@ -46,6 +46,9 @@ const EditModal = ({ visibility, onCancel }) => {
                   color={GlobalStyles.colors.accent}
                 />
               </View>
+              <Text style={styles.description}>
+                <Text style={styles.title}>عنوان لیگ</Text> را ویرایش کنید:
+              </Text>
               <Controller
                 name="title"
                 control={control}
@@ -54,19 +57,13 @@ const EditModal = ({ visibility, onCancel }) => {
                 }}
                 render={({ field: { onChange, value } }) => {
                   return (
-                    <View style={styles.inputContainer}>
-                      <Text style={styles.description}>
-                        <Text style={styles.title}>عنوان لیگ</Text> را ویرایش
-                        کنید:
-                      </Text>
-                      <TextInput
-                        style={styles.input}
-                        onChangeText={onChange}
-                        value={value}
-                        autoCorrect={false}
-                        placeholder="عنوان"
-                      />
-                    </View>
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={onChange}
+                      value={value}
+                      autoCorrect={false}
+                      placeholder="عنوان"
+                    />
                   );
                 }}
               />
@@ -113,6 +110,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     position: "relative",
     alignItems: "center",
+    flexDirection: "column",
+    gap: 15,
   },
   icon: {
     position: "absolute",
@@ -121,11 +120,6 @@ const styles = StyleSheet.create({
     top: -27,
     padding: 12,
     elevation: 4,
-  },
-  inputContainer: {
-    width: "100%",
-    flexDirection: "column",
-    gap: 15,
   },
   description: {
     fontFamily: "samim",
@@ -139,6 +133,7 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.accent,
   },
   input: {
+    width: "100%",
     fontFamily: "samim",
     fontSize: 15,
     direction: "rtl",

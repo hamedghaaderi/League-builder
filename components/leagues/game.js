@@ -1,10 +1,17 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../constants/colors";
+import { useState } from "react";
+import GameModal from "../modals/game-modal";
 
 const Game = ({ game }) => {
+  const [showGameModal, setShowGameModal] = useState(false);
+
   return (
     <>
-      <Pressable style={styles.container}>
+      <Pressable
+        onPress={() => setShowGameModal(true)}
+        style={styles.container}
+      >
         <View style={styles.team}>
           <Text style={styles.teamText}>منچستر سیتی - حامد</Text>
         </View>
@@ -17,6 +24,12 @@ const Game = ({ game }) => {
           <Text style={styles.teamText}>حسین - ریال مادرید</Text>
         </View>
       </Pressable>
+      {showGameModal && (
+        <GameModal
+          visibility={showGameModal}
+          onCancel={() => setShowGameModal(false)}
+        />
+      )}
     </>
   );
 };
@@ -25,6 +38,7 @@ export default Game;
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     flexDirection: "row-reverse",
     alignItems: "center",
     justifyContent: "space-between",
@@ -35,7 +49,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   team: {
-    width: "37%",
+    flex: 40,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -44,21 +58,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     direction: "rtl",
     color: GlobalStyles.colors.textPrimary,
-    fontsize: 13,
+    fontSize: 13,
   },
   result: {
-    width: "20%",
+    flex: 20,
     flexDirection: "row-reverse",
     alignItems: "center",
     justifyContent: "center",
     gap: 7,
   },
   score: {
-    width: "34%",
+    flex: 50,
     fontFamily: "samim",
     textAlign: "center",
     color: GlobalStyles.colors.textPrimary,
-    fontsize: 13,
+    fontSize: 15,
   },
   dash: {
     width: 7,

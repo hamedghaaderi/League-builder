@@ -65,6 +65,9 @@ const ImportModal = ({ visibility, onCancel }) => {
                   color={GlobalStyles.colors.secondary}
                 />
               </View>
+              <Text style={styles.description}>
+                <Text style={styles.title}>فایل لیگ</Text> را انتخاب کنید:
+              </Text>
               <Controller
                 name="file"
                 control={control}
@@ -72,10 +75,6 @@ const ImportModal = ({ visibility, onCancel }) => {
                 render={({ field: { onChange, value } }) => {
                   return (
                     <View style={styles.inputContainer}>
-                      <Text style={styles.description}>
-                        <Text style={styles.title}>فایل لیگ</Text> را انتخاب
-                        کنید:
-                      </Text>
                       <Pressable
                         onPress={() => handlePickFile(onChange)}
                         style={styles.chooseButton}
@@ -160,6 +159,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     position: "relative",
     alignItems: "center",
+    flexDirection: "column",
+    gap: 15,
   },
   icon: {
     position: "absolute",
