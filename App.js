@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LeagueListScreen from "./screens/league-list-screen";
 import LeagueCreateScreen from "./screens/leagues/league-create-screen";
-import LeagueScreen from "./screens/leagues/league-screen";
+import PendingLeagueScreen from "./screens/leagues/pending-league-screen";
+import CompleteLeagueScreen from "./screens/leagues/complete-league-screen";
 import DeveloperScreen from "./screens/developer-screen";
 import TabBar from "./components/ui/tab-bar";
 import { useFonts } from "expo-font";
@@ -77,8 +78,8 @@ export default function App() {
 
           {/* League Screens */}
           <Stack.Screen
-            name="League"
-            component={LeagueScreen}
+            name="PendingLeague"
+            component={PendingLeagueScreen}
             options={{
               title: "",
               headerShadowVisible: false,
@@ -99,6 +100,14 @@ export default function App() {
                   </>
                 );
               },
+            }}
+          />
+          <Stack.Screen
+            name="CompleteLeague"
+            component={CompleteLeagueScreen}
+            options={{
+              title: "",
+              headerShadowVisible: false,
             }}
           />
           <Stack.Screen

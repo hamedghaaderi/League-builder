@@ -6,7 +6,7 @@ import Standings from "../../components/leagues/standings";
 import Fixtures from "../../components/leagues/fixtures";
 import { SceneMap, TabView } from "react-native-tab-view";
 
-const LeagueScreen = () => {
+const PendingLeagueScreen = () => {
   const [index, setIndex] = useState(1);
 
   const routes = [{ key: "fixtures" }, { key: "standings" }];
@@ -79,7 +79,7 @@ const LeagueScreen = () => {
   );
 };
 
-export default LeagueScreen;
+export default PendingLeagueScreen;
 
 const styles = StyleSheet.create({
   informations: {
@@ -128,8 +128,7 @@ const styles = StyleSheet.create({
   },
   tabs: {
     backgroundColor: GlobalStyles.colors.primary,
-    paddingBottom: 10,
-    paddingHorizontal: 10,
+    padding: 10,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
     flexDirection: "row-reverse",
@@ -138,13 +137,13 @@ const styles = StyleSheet.create({
   },
   tabItem: {
     flex: 1,
-    paddingVertical: 8,
+    paddingVertical: 4,
     borderRadius: 25,
     alignItems: "center",
   },
   tabText: {
     fontFamily: "samim",
-    fontSize: 15,
+    fontSize: 14,
     color: GlobalStyles.colors.surface,
   },
   activeTabItem: {

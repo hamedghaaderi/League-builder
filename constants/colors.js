@@ -16,7 +16,10 @@ const GlobalStyles = {
     backdrop: "#00000062",
     gradient50: "#bfc1caff",
     gradient100: "#a4a6adff",
-    red: "#e01c2cff"
+    red: "#e01c2cff",
+    winnerIcon: "#CFA23A",
+    winnerBackground: "#ffd7001f",
+    winnerShadow: "#FFD700",
   },
 };
 

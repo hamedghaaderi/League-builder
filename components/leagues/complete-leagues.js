@@ -1,23 +1,23 @@
 import { FlatList, View, StyleSheet } from "react-native";
-import LeagueItem from "./league-item";
+import CompleteLeagueItem from "./complete-league-item";
 import GlobalStyles from "../../constants/colors";
 import EmptyLeague from "./empty-league";
 
 const completeLeagues = () => {
   return (
     <View style={styles.container}>
-      {/* <FlatList
-        data={["", "", "", "", "", "", "", "", "", "", ""]}
+      <FlatList
+        data={["", "", "", "", ""]}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
         ListHeaderComponent={<View style={styles.listHeader} />}
         ListFooterComponent={<View style={styles.listFooter} />}
         renderItem={({ item }) => {
-          return <LeagueItem league={item} />;
+          return <CompleteLeagueItem league={item} />;
         }}
         keyExtractor={(item, index) => index}
-      /> */}
-      <EmptyLeague complete />
+      />
+      {/* <EmptyLeague complete /> */}
     </View>
   );
 };

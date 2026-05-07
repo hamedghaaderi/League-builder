@@ -1,16 +1,16 @@
-import { Pressable, Share, StyleSheet, Text, View, Modal } from "react-native";
+import { Pressable, Share, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import DeleteModal from "../modals/delete-modal";
 
-const LeagueItem = ({ league }) => {
+const PendingLeagueItem = ({ league }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { navigate } = useNavigation();
 
   const onItemPress = () => {
-    navigate("League");
+    navigate("PendingLeague");
   };
   const onSharePress = async () => {
     try {
@@ -86,7 +86,7 @@ const LeagueItem = ({ league }) => {
   );
 };
 
-export default LeagueItem;
+export default PendingLeagueItem;
 
 const styles = StyleSheet.create({
   container: {

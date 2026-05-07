@@ -59,22 +59,22 @@ const LeagueListScreen = ({ navigation }) => {
       <View style={styles.tabsWrapper}>
         <View style={styles.glassLayer} />
         <View style={styles.tabsRow}>
-          <TouchableOpacity
+          <Pressable
             style={[styles.tabButton, index === 1 && styles.activeTabButton]}
             onPress={() => setIndex(1)}
           >
             <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
               در حال انجام
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </Pressable>
+          <Pressable
             style={[styles.tabButton, index === 0 && styles.activeTabButton]}
             onPress={() => setIndex(0)}
           >
             <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
               تمام شده
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
       <TabView

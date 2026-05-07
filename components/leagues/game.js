@@ -3,13 +3,13 @@ import GlobalStyles from "../../constants/colors";
 import { useState } from "react";
 import GameModal from "../modals/game-modal";
 
-const Game = ({ game }) => {
+const Game = ({ game, editable }) => {
   const [showGameModal, setShowGameModal] = useState(false);
 
   return (
     <>
       <Pressable
-        onPress={() => setShowGameModal(true)}
+        onPress={() => editable && setShowGameModal(true)}
         style={styles.container}
       >
         <View style={styles.team}>
@@ -24,7 +24,7 @@ const Game = ({ game }) => {
           <Text style={styles.teamText}>حسین - ریال مادرید</Text>
         </View>
       </Pressable>
-      {showGameModal && (
+      {showGameModal && editable && (
         <GameModal
           visibility={showGameModal}
           onCancel={() => setShowGameModal(false)}

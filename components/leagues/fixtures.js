@@ -1,8 +1,8 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import GlobalStyles from "../../constants/colors";
 import Game from "./game";
 
-const Fixtures = () => {
+const Fixtures = ({ fixed = false }) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -36,7 +36,7 @@ const Fixtures = () => {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
-          return <Game game={item} />;
+          return <Game game={item} editable={fixed ? false : true} />;
         }}
       />
     </View>

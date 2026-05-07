@@ -1,5 +1,5 @@
 import { FlatList, View, StyleSheet } from "react-native";
-import LeagueItem from "./league-item";
+import PendingLeagueItem from "./pending-league-item";
 import GlobalStyles from "../../constants/colors";
 import EmptyLeague from "./empty-league";
 
@@ -13,7 +13,7 @@ const PendingLeagues = () => {
         ListHeaderComponent={<View style={styles.listHeader} />}
         ListFooterComponent={<View style={styles.listFooter} />}
         renderItem={({ item }) => {
-          return <LeagueItem league={item} />;
+          return <PendingLeagueItem league={item} />;
         }}
         keyExtractor={(item, index) => index}
       />
