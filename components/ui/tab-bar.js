@@ -8,7 +8,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
     <>
       <LinearGradient
         colors={[
-          "rgba(255, 255, 255, 0)",
+          GlobalStyles.colors.gradient0,
           GlobalStyles.colors.gradient50,
           GlobalStyles.colors.gradient100,
         ]}

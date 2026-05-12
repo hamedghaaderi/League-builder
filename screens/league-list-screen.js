@@ -50,9 +50,9 @@ const LeagueListScreen = ({ navigation }) => {
     <>
       <LinearGradient
         colors={[
-          "rgba(217, 220, 233, 1)",
-          "rgba(236, 239, 252, 1)",
-          "rgba(255, 255, 255, 0)",
+          GlobalStyles.colors.gradient100,
+          GlobalStyles.colors.gradient50,
+          GlobalStyles.colors.gradient0,
         ]}
         style={styles.gradientLayer}
       />

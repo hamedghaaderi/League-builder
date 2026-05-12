@@ -5,8 +5,10 @@ import { Ionicons } from "@expo/vector-icons";
 import Standings from "../../components/leagues/standings";
 import Fixtures from "../../components/leagues/fixtures";
 import { SceneMap, TabView } from "react-native-tab-view";
+import CompletionModal from "../../components/modals/completion-modal";
 
 const PendingLeagueScreen = () => {
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [index, setIndex] = useState(1);
 
   const routes = [{ key: "fixtures" }, { key: "standings" }];
@@ -47,6 +49,16 @@ const PendingLeagueScreen = () => {
               {true ? "رفت و برگشت" : "تک بازی"}
             </Text>
           </View>
+          <Pressable
+            style={styles.completionButton}
+            onPress={() => setShowCompletionModal(true)}
+          >
+            <Ionicons
+              name="checkmark-circle"
+              color={GlobalStyles.colors.accent}
+              size={22}
+            />
+          </Pressable>
         </View>
       </View>
       <View style={styles.tabsWrapper}>
@@ -75,6 +87,12 @@ const PendingLeagueScreen = () => {
         onIndexChange={(i) => setIndex(i)}
         renderTabBar={() => null}
       />
+      {showCompletionModal && (
+        <CompletionModal
+          visibility={showCompletionModal}
+          onCancel={() => setShowCompletionModal(false)}
+        />
+      )}
     </>
   );
 };
@@ -104,6 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
     alignItems: "center",
     gap: 3,
+    position: "relative",
   },
   detailItem: {
     flexDirection: "row",
@@ -122,6 +141,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: GlobalStyles.colors.accentAlt,
     marginHorizontal: 10,
+  },
+  completionButton: {
+    position: "absolute",
+    left: 0,
   },
   tabsWrapper: {
     backgroundColor: GlobalStyles.colors.background,
