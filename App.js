@@ -114,7 +114,7 @@ export default function App() {
             name="LeagueCreate"
             component={LeagueCreateScreen}
             options={{
-              title: "ساخت لیگ جدید",
+              title: "ساخت لیگ",
             }}
           />
         </Stack.Navigator>

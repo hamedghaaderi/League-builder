@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
+    height: 45,
     fontFamily: "samim",
     fontSize: 15,
     direction: "rtl",
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.background,
   },
   confirmText: {
-    color: GlobalStyles.colors.surface,
+    color: GlobalStyles.colors.textPrimary,
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
