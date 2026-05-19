@@ -70,7 +70,7 @@ const EditModal = ({ visibility, onCancel }) => {
             </View>
             <View style={styles.actions}>
               <Pressable style={[styles.button, styles.confirmButton]}>
-                <Text style={[styles.buttonText, styles.confirmText]}>ثبت</Text>
+                <Text style={[styles.buttonText, styles.confirmText]}>ذخیره</Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     borderRadius: 35,
-    paddingVertical: 8,
+    paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
   },

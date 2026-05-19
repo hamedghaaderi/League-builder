@@ -80,7 +80,6 @@ const DeveloperScreen = () => {
             </Pressable>
           </View>
         </View>
-        <View style={styles.listFooter} />
       </ScrollView>
     </View>
   );
@@ -92,11 +91,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.background,
-    paddingTop: 20,
     paddingHorizontal: 20,
   },
   content: {
     gap: 20,
+    paddingTop: 20,
+    paddingBottom: 90,
   },
   section: {
     gap: 10,
@@ -140,10 +140,5 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     justifyContent: "center",
-  },
-  listFooter: {
-    height: 70,
-    width: "100%",
-    backgroundColor: GlobalStyles.colors.background,
   },
 });

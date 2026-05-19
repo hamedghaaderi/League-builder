@@ -10,8 +10,6 @@ const completeLeagues = () => {
         data={["", "", "", "", ""]}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
-        ListHeaderComponent={<View style={styles.listHeader} />}
-        ListFooterComponent={<View style={styles.listFooter} />}
         renderItem={({ item }) => {
           return <CompleteLeagueItem league={item} />;
         }}
@@ -32,15 +30,7 @@ const styles = StyleSheet.create({
   },
   content: {
     gap: 15,
-  },
-  listHeader: {
-    height: 65,
-    width: "100%",
-    backgroundColor: GlobalStyles.colors.background,
-  },
-  listFooter: {
-    height: 70,
-    width: "100%",
-    backgroundColor: GlobalStyles.colors.background,
+    paddingTop: 80,
+    paddingBottom: 85,
   },
 });

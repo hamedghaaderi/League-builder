@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     gap: 20,
+    padding: 10,
+    borderRadius: 14,
+    backgroundColor: GlobalStyles.colors.border
   },
   detailsRow: {
     flexDirection: "row",

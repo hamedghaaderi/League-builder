@@ -5,58 +5,54 @@ import StandingItem from "./standing-item";
 const Standings = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.standings}>
-        <FlatList
-          data={[
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-          ]}
-          keyExtractor={(item, index) => index}
-          contentContainerStyle={styles.content}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          ListHeaderComponent={() => (
-            <View style={styles.header}>
-              <View style={styles.detailsRow}>
-                <Text style={styles.detail}>امتیاز</Text>
-                <Text style={styles.detail}>تفاضل</Text>
-                <Text style={styles.detail}>باخت</Text>
-                <Text style={styles.detail}>مساوی</Text>
-                <Text style={styles.detail}>برد</Text>
-                <Text style={styles.detail}>بازی</Text>
-              </View>
-              <View>
-                <Text style={styles.team}>تیم</Text>
-              </View>
-            </View>
-          )}
-          renderItem={({ item }) => {
-            return <StandingItem team={item} />;
-          }}
-        />
+      <View style={styles.header}>
+        <View style={styles.detailsRow}>
+          <Text style={styles.detail}>امتیاز</Text>
+          <Text style={styles.detail}>تفاضل</Text>
+          <Text style={styles.detail}>باخت</Text>
+          <Text style={styles.detail}>مساوی</Text>
+          <Text style={styles.detail}>برد</Text>
+          <Text style={styles.detail}>بازی</Text>
+        </View>
+        <View>
+          <Text style={styles.team}>تیم</Text>
+        </View>
       </View>
+      <FlatList
+        data={[
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]}
+        keyExtractor={(item, index) => index}
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => {
+          return <StandingItem team={item} />;
+        }}
+      />
+      <View style={styles.headerAndFooter} />
     </View>
   );
 };
@@ -67,16 +63,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.background,
-    padding: 20,
-  },
-  standings: {
-    borderRadius: 14,
-    overflow: "hidden",
-    padding: 10,
-    backgroundColor: GlobalStyles.colors.border,
-  },
-  content: {
-    gap: 13,
+    paddingHorizontal: 20,
+    paddingTop: 15,
   },
   header: {
     width: "100%",
@@ -84,8 +72,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     gap: 20,
-    paddingBottom: 10,
-    borderBottomWidth: 0.5,
+    padding: 10,
+    borderRadius: 14,
+    borderWidth: 0.75,
+    marginBottom: 4,
     borderColor: GlobalStyles.colors.accentAlt,
     backgroundColor: GlobalStyles.colors.border,
   },
@@ -99,13 +89,17 @@ const styles = StyleSheet.create({
     fontFamily: "samim",
     textAlign: "center",
     width: "15%",
-    fontSize: 11,
+    fontSize: 12,
     color: GlobalStyles.colors.textPrimary,
   },
   team: {
     fontFamily: "samim",
     marginRight: 4,
-    fontSize: 11,
+    fontSize: 12,
     color: GlobalStyles.colors.textPrimary,
+  },
+  content: {
+    gap: 4,
+    paddingBottom: 15,
   },
 });

@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlobalStyles from "../../constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
@@ -24,7 +24,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
             const isFocused = state.index === index;
 
             return (
-              <TouchableOpacity
+              <Pressable
                 key={route.key}
                 style={[styles.tabButton, isFocused && styles.activeTabButton]}
                 onPress={() => navigation.navigate(route.name)}
@@ -56,7 +56,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                     }
                   />
                 )}
-              </TouchableOpacity>
+              </Pressable>
             );
           })}
         </View>

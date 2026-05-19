@@ -49,9 +49,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.background,
-    padding: 20,
+    paddingHorizontal: 20,
   },
   content: {
+    paddingVertical: 15,
     gap: 15,
   },
 });

@@ -42,7 +42,7 @@ const LeagueCreateScreen = ({ navigation }) => {
         <Pressable
           style={[styles.submitButton, { backgroundColor: tintColor }]}
         >
-          <Text style={styles.submitText}>ثبت</Text>
+          <Text style={styles.submitText}>افزودن</Text>
         </Pressable>
       ),
     });
@@ -102,7 +102,6 @@ const LeagueCreateScreen = ({ navigation }) => {
                     value={value}
                     onChange={onChange}
                     placeholder="نام بازیکن را وارد کنید"
-                    inputStyles={styles.teamInputs}
                     withoutLabel
                   />
                 )}
@@ -116,7 +115,6 @@ const LeagueCreateScreen = ({ navigation }) => {
                     value={value}
                     onChange={onChange}
                     placeholder="نام تیم را وارد کنید"
-                    inputStyles={styles.teamInputs}
                     withoutLabel
                   />
                 )}
@@ -124,7 +122,7 @@ const LeagueCreateScreen = ({ navigation }) => {
               <Pressable onPress={() => removeTeam(_index)}>
                 <Ionicons
                   name="trash"
-                  size={17}
+                  size={19}
                   color={GlobalStyles.colors.red}
                 />
               </Pressable>
@@ -153,10 +151,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.background,
-    padding: 20,
+    paddingHorizontal: 20,
   },
   content: {
     gap: 20,
+    paddingVertical: 20,
   },
   fieldContainer: {
     alignItems: "flex-end",
@@ -181,10 +180,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
-  teamInputs: {
-    fontSize: 13,
-    height: 42,
-  },
   addTeamButton: {
     flexDirection: "row",
     alignItems: "center",
@@ -202,12 +197,12 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     borderRadius: 12,
-    paddingVertical: 5,
+    paddingVertical: 4,
     paddingHorizontal: 15,
   },
   submitText: {
     fontFamily: "samim",
-    fontSize: 13,
+    fontSize: 14,
     color: GlobalStyles.colors.primary,
   },
 });

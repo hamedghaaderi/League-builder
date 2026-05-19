@@ -4,7 +4,6 @@ import GlobalStyles from "../../constants/colors";
 const Input = ({
   label = "",
   placeholder,
-  inputStyles = {},
   withoutLabel = false,
   value,
   onChange,
@@ -13,7 +12,7 @@ const Input = ({
     <View style={styles.fieldContainer}>
       {!withoutLabel && <Text style={styles.label}>{label}</Text>}
       <TextInput
-        style={[styles.input, inputStyles]}
+        style={styles.input}
         onChangeText={onChange}
         value={value}
         autoCorrect={false}

@@ -14,7 +14,7 @@ const EmptyLeague = ({ complete = false }) => {
         لیگ {complete ? "تمام شده ای" : "در حال انجامی"} وجود ندارد.
       </Text>
       <Text style={styles.emptySubtitle}>
-        با زدن روی دکمه{" "}
+        با زدن روی دکمه{"  "}
         <View style={styles.emptyButton}>
           <Ionicons name="add" size={10} color={GlobalStyles.colors.accent} />
         </View>

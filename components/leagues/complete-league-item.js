@@ -24,7 +24,7 @@ const CompleteLeagueItem = ({ league }) => {
               <View style={styles.trophyCircle}>
                 <Ionicons
                   name="ribbon"
-                  size={15}
+                  size={13}
                   color={GlobalStyles.colors.winnerIcon}
                 />
               </View>
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.textSecondary,
   },
   trophyCircle: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 21,
+    height: 21,
+    borderRadius: 11,
     backgroundColor: GlobalStyles.colors.winnerBackground,
     justifyContent: "center",
     alignItems: "center",

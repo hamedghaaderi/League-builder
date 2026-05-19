@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     fontFamily: "samim",
     textAlign: "center",
     color: GlobalStyles.colors.textPrimary,
-    fontSize: 15,
+    fontSize: 17,
   },
   dash: {
     width: 7,

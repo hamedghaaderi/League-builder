@@ -71,7 +71,7 @@ const GameModal = ({ visibility, onCancel }) => {
                           }
                           enableScrollByTapOnItem={true}
                           visibleItemCount={1}
-                          itemHeight={35}
+                          itemHeight={40}
                           itemTextStyle={styles.pickerText}
                           overlayItemStyle={styles.pickerOverlay}
                         />
@@ -93,7 +93,7 @@ const GameModal = ({ visibility, onCancel }) => {
                           }
                           enableScrollByTapOnItem={true}
                           visibleItemCount={1}
-                          itemHeight={35}
+                          itemHeight={40}
                           itemTextStyle={styles.pickerText}
                           overlayItemStyle={styles.pickerOverlay}
                         />
@@ -108,7 +108,7 @@ const GameModal = ({ visibility, onCancel }) => {
             </View>
             <View style={styles.actions}>
               <Pressable style={[styles.button, styles.deleteButton]}>
-                <Text style={[styles.buttonText, styles.deleteText]}>ثبت</Text>
+                <Text style={[styles.buttonText, styles.deleteText]}>ذخیره</Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
@@ -199,8 +199,8 @@ const styles = StyleSheet.create({
   pickerText: {
     fontFamily: "samim",
     color: GlobalStyles.colors.textPrimary,
-    fontSize: 15,
-    paddingHorizontal: 8,
+    fontSize: 17,
+    paddingHorizontal: 9,
     borderRadius: 11,
     borderWidth: 1,
     borderColor: GlobalStyles.colors.accentAlt,
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     borderRadius: 35,
-    paddingVertical: 8,
+    paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
   },
