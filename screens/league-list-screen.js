@@ -60,7 +60,11 @@ const LeagueListScreen = ({ navigation }) => {
         <View style={styles.glassLayer} />
         <View style={styles.tabsRow}>
           <Pressable
-            style={[styles.tabButton, index === 1 && styles.activeTabButton]}
+            style={({ pressed }) => [
+              styles.tabButton,
+              index === 1 && styles.activeTabButton,
+              pressed && index !== 1 && styles.tabButtonPressed,
+            ]}
             onPress={() => setIndex(1)}
           >
             <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
@@ -68,7 +72,11 @@ const LeagueListScreen = ({ navigation }) => {
             </Text>
           </Pressable>
           <Pressable
-            style={[styles.tabButton, index === 0 && styles.activeTabButton]}
+            style={({ pressed }) => [
+              styles.tabButton,
+              index === 0 && styles.activeTabButton,
+              pressed && index !== 0 && styles.tabButtonPressed,
+            ]}
             onPress={() => setIndex(0)}
           >
             <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
@@ -84,12 +92,24 @@ const LeagueListScreen = ({ navigation }) => {
         renderTabBar={() => null}
       />
       <Animated.View style={[styles.addButton, { transform: [{ rotate }] }]}>
-        <Pressable onPress={() => setShowAddOptions((_prev) => !_prev)}>
+        <Pressable
+          onPress={() => setShowAddOptions((_prev) => !_prev)}
+          style={({ pressed }) => [
+            styles.addPressable,
+            pressed && styles.addButtonPressed,
+          ]}
+        >
           <Ionicons name="add" size={30} color={GlobalStyles.colors.accent} />
         </Pressable>
       </Animated.View>
       <Animated.View style={[styles.createButton, { transform: [{ scale }] }]}>
-        <Pressable onPress={() => navigation.navigate("LeagueCreate")}>
+        <Pressable
+          onPress={() => navigation.navigate("LeagueCreate")}
+          style={({ pressed }) => [
+            styles.smallButtonPressable,
+            pressed && styles.smallButtonPressed,
+          ]}
+        >
           <Ionicons
             name="create-outline"
             size={18}
@@ -98,7 +118,13 @@ const LeagueListScreen = ({ navigation }) => {
         </Pressable>
       </Animated.View>
       <Animated.View style={[styles.importButton, { transform: [{ scale }] }]}>
-        <Pressable onPress={() => setShowImportModal(true)}>
+        <Pressable
+          onPress={() => setShowImportModal(true)}
+          style={({ pressed }) => [
+            styles.smallButtonPressable,
+            pressed && styles.smallButtonPressed,
+          ]}
+        >
           <Ionicons
             name="enter-outline"
             size={18}
@@ -165,7 +191,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   activeTabButton: {
-    backgroundColor: GlobalStyles.colors.primaryTransparent,
+    backgroundColor: GlobalStyles.colors.primary,
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
@@ -176,31 +202,48 @@ const styles = StyleSheet.create({
     bottom: 80,
     width: 60,
     height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: GlobalStyles.colors.primary,
     borderRadius: 30,
+    overflow: "hidden",
+  },
+  addPressable: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: GlobalStyles.colors.primary,
   },
   createButton: {
     position: "absolute",
     right: 20,
     bottom: 150,
-    alignItems: "center",
-    justifyContent: "center",
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: GlobalStyles.colors.secondary,
+    overflow: "hidden",
   },
   importButton: {
     position: "absolute",
     right: 20,
     bottom: 200,
-    alignItems: "center",
-    justifyContent: "center",
     width: 40,
     height: 40,
     borderRadius: 20,
+    overflow: "hidden",
+  },
+  smallButtonPressable: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: GlobalStyles.colors.secondary,
+  },
+  tabButtonPressed: {
+    backgroundColor: GlobalStyles.colors.borderTransparent,
+  },
+  addButtonPressed: {
+    backgroundColor: GlobalStyles.colors.primaryDark,
+  },
+  smallButtonPressed: {
+    backgroundColor: GlobalStyles.colors.primary,
   },
 });

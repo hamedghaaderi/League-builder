@@ -39,14 +39,24 @@ const CompletionModal = ({ visibility, onCancel }) => {
               </Text>
             </View>
             <View style={styles.actions}>
-              <Pressable style={[styles.button, styles.deleteButton]}>
-                <Text style={[styles.buttonText, styles.deleteText]}>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.completionButton,
+                  pressed && styles.completionButtonPressed,
+                ]}
+              >
+                <Text style={[styles.buttonText, styles.completionText]}>
                   اتمام
                 </Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
-                style={[styles.button, styles.cancelButton]}
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.cancelButton,
+                  pressed && styles.cancelButtonPressed,
+                ]}
               >
                 <Text style={[styles.buttonText, styles.canceltext]}>
                   انصراف
@@ -118,16 +128,22 @@ const styles = StyleSheet.create({
     fontFamily: "samim",
     fontSize: 15,
   },
-  deleteButton: {
+  completionButton: {
     backgroundColor: GlobalStyles.colors.winnerIcon,
   },
   cancelButton: {
     backgroundColor: GlobalStyles.colors.background,
   },
-  deleteText: {
+  completionText: {
     color: GlobalStyles.colors.surface,
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
+  },
+  completionButtonPressed: {
+    backgroundColor: GlobalStyles.colors.accent,
+  },
+  cancelButtonPressed: {
+    backgroundColor: GlobalStyles.colors.border,
   },
 });

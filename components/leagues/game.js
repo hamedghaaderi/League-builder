@@ -10,7 +10,10 @@ const Game = ({ game, editable }) => {
     <>
       <Pressable
         onPress={() => editable && setShowGameModal(true)}
-        style={styles.container}
+        style={({ pressed }) => [
+          styles.container,
+          pressed && editable && styles.containerPressed,
+        ]}
       >
         <View style={styles.team}>
           <Text style={styles.teamText}>منچستر سیتی - حامد</Text>
@@ -79,5 +82,8 @@ const styles = StyleSheet.create({
     height: 2.5,
     borderRadius: 2,
     backgroundColor: GlobalStyles.colors.accentAlt,
+  },
+  containerPressed: {
+    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

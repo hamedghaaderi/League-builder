@@ -88,8 +88,19 @@ export default function App() {
 
                 return (
                   <>
-                    <Pressable onPress={() => setShowEditModal(true)}>
-                      <Ionicons name="pencil" size={22} color={tintColor} />
+                    <Pressable
+                      onPress={() => setShowEditModal(true)}
+                      hitSlop={8}
+                    >
+                      {({ pressed }) => (
+                        <Ionicons
+                          name="pencil"
+                          size={22}
+                          color={
+                            pressed ? GlobalStyles.colors.winnerIcon : tintColor
+                          }
+                        />
+                      )}
                     </Pressable>
                     {showEditModal && (
                       <EditModal

@@ -69,12 +69,24 @@ const EditModal = ({ visibility, onCancel }) => {
               />
             </View>
             <View style={styles.actions}>
-              <Pressable style={[styles.button, styles.confirmButton]}>
-                <Text style={[styles.buttonText, styles.confirmText]}>ذخیره</Text>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.confirmButton,
+                  pressed && styles.confirmButtonPressed,
+                ]}
+              >
+                <Text style={[styles.buttonText, styles.confirmText]}>
+                  ذخیره
+                </Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
-                style={[styles.button, styles.cancelButton]}
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.cancelButton,
+                  pressed && styles.cancelButtonPressed,
+                ]}
               >
                 <Text style={[styles.buttonText, styles.canceltext]}>
                   انصراف
@@ -173,5 +185,11 @@ const styles = StyleSheet.create({
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
+  },
+  confirmButtonPressed: {
+    backgroundColor: GlobalStyles.colors.winnerIcon,
+  },
+  cancelButtonPressed: {
+    backgroundColor: GlobalStyles.colors.border,
   },
 });

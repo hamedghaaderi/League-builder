@@ -26,7 +26,11 @@ const TabBar = ({ state, descriptors, navigation }) => {
             return (
               <Pressable
                 key={route.key}
-                style={[styles.tabButton, isFocused && styles.activeTabButton]}
+                style={({ pressed }) => [
+                  styles.tabButton,
+                  isFocused && styles.activeTabButton,
+                  pressed && !isFocused && styles.tabButtonPressed,
+                ]}
                 onPress={() => navigation.navigate(route.name)}
               >
                 <Text
@@ -114,9 +118,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   activeTabButton: {
-    backgroundColor: GlobalStyles.colors.primaryTransparent,
+    backgroundColor: GlobalStyles.colors.primary,
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
+  },
+  tabButtonPressed: {
+    backgroundColor: GlobalStyles.colors.primaryTransparent,
   },
 });

@@ -9,7 +9,7 @@ import { useLayoutEffect } from "react";
 const LeagueCreateScreen = ({ navigation }) => {
   const {
     control,
-    formState: { errors },
+    formState: { isValid },
     handleSubmit,
   } = useForm({
     mode: "onChange",
@@ -23,6 +23,7 @@ const LeagueCreateScreen = ({ navigation }) => {
       ],
     },
   });
+  console.log("isValid: ", isValid);
   const { fields, append, remove } = useFieldArray({
     control,
     name: "teams",
@@ -40,13 +41,19 @@ const LeagueCreateScreen = ({ navigation }) => {
     navigation.setOptions({
       headerRight: ({ tintColor }) => (
         <Pressable
-          style={[styles.submitButton, { backgroundColor: tintColor }]}
+          disabled={!isValid}
+          style={({ pressed }) => [
+            styles.submitButton,
+            { backgroundColor: tintColor },
+            pressed && isValid && styles.submitButtonPressed,
+            !isValid && styles.submitButtonDisabled,
+          ]}
         >
           <Text style={styles.submitText}>افزودن</Text>
         </Pressable>
       ),
     });
-  }, []);
+  }, [isValid]);
 
   return (
     <View style={styles.container}>
@@ -72,9 +79,6 @@ const LeagueCreateScreen = ({ navigation }) => {
         <Controller
           control={control}
           name="type"
-          rules={{
-            required: true,
-          }}
           render={({ field: { value, onChange } }) => (
             <Radio
               label="نوع"
@@ -119,17 +123,26 @@ const LeagueCreateScreen = ({ navigation }) => {
                   />
                 )}
               />
-              <Pressable onPress={() => removeTeam(_index)}>
-                <Ionicons
-                  name="trash"
-                  size={19}
-                  color={GlobalStyles.colors.red}
-                />
+              <Pressable onPress={() => removeTeam(_index)} hitSlop={8}>
+                {({ pressed }) => (
+                  <Ionicons
+                    name="trash"
+                    size={19}
+                    color={
+                      pressed
+                        ? GlobalStyles.colors.redPressed
+                        : GlobalStyles.colors.red
+                    }
+                  />
+                )}
               </Pressable>
             </View>
           ))}
           <Pressable
-            style={styles.addTeamButton}
+            style={({ pressed }) => [
+              styles.addTeamButton,
+              pressed && styles.addTeamButtonPressed,
+            ]}
             onPress={() => append({ team: "", player: "" })}
           >
             <Text style={styles.addTeamText}>افزودن تیم</Text>
@@ -204,5 +217,14 @@ const styles = StyleSheet.create({
     fontFamily: "samim",
     fontSize: 14,
     color: GlobalStyles.colors.primary,
+  },
+  submitButtonPressed: {
+    backgroundColor: GlobalStyles.colors.winnerIcon,
+  },
+  submitButtonDisabled: {
+    opacity: 0.65,
+  },
+  addTeamButtonPressed: {
+    backgroundColor: GlobalStyles.colors.primaryDark,
   },
 });

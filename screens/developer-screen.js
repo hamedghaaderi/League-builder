@@ -13,6 +13,13 @@ import Github from "../components/logos/github";
 import Instagram from "../components/logos/instagram";
 import Whatsapp from "../components/logos/whatsapp";
 
+const links = [
+  { logo: Linkedin, url: "https://linkedin.com/in/hamedghaaderi" },
+  { logo: Github, url: "https://github.com/hamedghaaderi" },
+  { logo: Instagram, url: "https://instagram.com/_hamedghaderi" },
+  { logo: Whatsapp, url: "https://wa.me/+989022669455" },
+];
+
 const DeveloperScreen = () => {
   const goToLink = (url) => {
     Linking.openURL(url);
@@ -54,30 +61,18 @@ const DeveloperScreen = () => {
         <View style={styles.section}>
           <Text style={styles.title}>راه‌های ارتباطی</Text>
           <View style={styles.links}>
-            <Pressable
-              onPress={() => goToLink("https://linkedin.com/in/hamedghaaderi")}
-              style={styles.linkItem}
-            >
-              <Linkedin />
-            </Pressable>
-            <Pressable
-              onPress={() => goToLink("https://github.com/hamedghaaderi")}
-              style={styles.linkItem}
-            >
-              <Github />
-            </Pressable>
-            <Pressable
-              onPress={() => goToLink("https://instagram.com/_hamedghaderi")}
-              style={styles.linkItem}
-            >
-              <Instagram />
-            </Pressable>
-            <Pressable
-              onPress={() => goToLink("https://wa.me/+989022669455")}
-              style={styles.linkItem}
-            >
-              <Whatsapp />
-            </Pressable>
+            {links.map((_link, _index) => (
+              <Pressable
+                key={_index}
+                onPress={() => goToLink(_link.url)}
+                style={({ pressed }) => [
+                  styles.linkItem,
+                  pressed && styles.linkItemPressed,
+                ]}
+              >
+                <_link.logo />
+              </Pressable>
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -140,5 +135,8 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     justifyContent: "center",
+  },
+  linkItemPressed: {
+    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

@@ -15,7 +15,13 @@ const CompleteLeagueItem = ({ league }) => {
 
   return (
     <>
-      <Pressable onPress={onItemPress} style={styles.container}>
+      <Pressable
+        onPress={onItemPress}
+        style={({ pressed }) => [
+          styles.container,
+          pressed && styles.containerPressed,
+        ]}
+      >
         <View style={styles.rightBar} />
         <View style={styles.content}>
           <View style={styles.informations}>
@@ -36,8 +42,19 @@ const CompleteLeagueItem = ({ league }) => {
               e.stopPropagation();
               setShowDeleteModal(true);
             }}
+            hitSlop={8}
           >
-            <Ionicons name="trash" size={22} color={GlobalStyles.colors.red} />
+            {({ pressed }) => (
+              <Ionicons
+                name="trash"
+                size={22}
+                color={
+                  pressed
+                    ? GlobalStyles.colors.redPressed
+                    : GlobalStyles.colors.red
+                }
+              />
+            )}
           </Pressable>
         </View>
       </Pressable>
@@ -106,5 +123,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: GlobalStyles.colors.winnerShadow,
     elevation: 3,
+  },
+  containerPressed: {
+    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

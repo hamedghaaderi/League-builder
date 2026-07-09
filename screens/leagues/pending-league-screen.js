@@ -52,12 +52,19 @@ const PendingLeagueScreen = () => {
           <Pressable
             style={styles.completionButton}
             onPress={() => setShowCompletionModal(true)}
+            hitSlop={8}
           >
-            <Ionicons
-              name="checkmark-circle"
-              color={GlobalStyles.colors.accent}
-              size={22}
-            />
+            {({ pressed }) => (
+              <Ionicons
+                name="checkmark-circle"
+                color={
+                  pressed
+                    ? GlobalStyles.colors.winnerIcon
+                    : GlobalStyles.colors.accent
+                }
+                size={22}
+              />
+            )}
           </Pressable>
         </View>
       </View>
@@ -65,7 +72,11 @@ const PendingLeagueScreen = () => {
         <View style={styles.tabs}>
           <Pressable
             onPress={() => setIndex(1)}
-            style={[styles.tabItem, index === 1 && styles.activeTabItem]}
+            style={({ pressed }) => [
+              styles.tabItem,
+              index === 1 && styles.activeTabItem,
+              pressed && index !== 1 && styles.tabItemPressed,
+            ]}
           >
             <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
               جدول
@@ -73,7 +84,11 @@ const PendingLeagueScreen = () => {
           </Pressable>
           <Pressable
             onPress={() => setIndex(0)}
-            style={[styles.tabItem, index === 0 && styles.activeTabItem]}
+            style={({ pressed }) => [
+              styles.tabItem,
+              index === 0 && styles.activeTabItem,
+              pressed && index !== 0 && styles.tabItemPressed,
+            ]}
           >
             <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
               بازی ها
@@ -174,5 +189,8 @@ const styles = StyleSheet.create({
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
+  },
+  tabItemPressed: {
+    backgroundColor: GlobalStyles.colors.secondaryTransparent,
   },
 });

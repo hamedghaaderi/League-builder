@@ -38,12 +38,22 @@ const DeleteModal = ({ visibility, onCancel }) => {
               </Text>
             </View>
             <View style={styles.actions}>
-              <Pressable style={[styles.button, styles.deleteButton]}>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.deleteButton,
+                  pressed && styles.deleteButtonPressed,
+                ]}
+              >
                 <Text style={[styles.buttonText, styles.deleteText]}>حذف</Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
-                style={[styles.button, styles.cancelButton]}
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.cancelButton,
+                  pressed && styles.cancelButtonPressed,
+                ]}
               >
                 <Text style={[styles.buttonText, styles.canceltext]}>
                   انصراف
@@ -126,5 +136,11 @@ const styles = StyleSheet.create({
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
+  },
+  deleteButtonPressed: {
+    backgroundColor: GlobalStyles.colors.redPressed,
+  },
+  cancelButtonPressed: {
+    backgroundColor: GlobalStyles.colors.border,
   },
 });

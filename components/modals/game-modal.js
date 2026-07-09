@@ -107,12 +107,24 @@ const GameModal = ({ visibility, onCancel }) => {
               </View>
             </View>
             <View style={styles.actions}>
-              <Pressable style={[styles.button, styles.deleteButton]}>
-                <Text style={[styles.buttonText, styles.deleteText]}>ذخیره</Text>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.submitButton,
+                  pressed && styles.submitButtonPressed,
+                ]}
+              >
+                <Text style={[styles.buttonText, styles.submitText]}>
+                  ذخیره
+                </Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
-                style={[styles.button, styles.cancelButton]}
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.cancelButton,
+                  pressed && styles.cancelButtonPressed,
+                ]}
               >
                 <Text style={[styles.buttonText, styles.canceltext]}>
                   انصراف
@@ -230,16 +242,22 @@ const styles = StyleSheet.create({
     fontFamily: "samim",
     fontSize: 15,
   },
-  deleteButton: {
+  submitButton: {
     backgroundColor: GlobalStyles.colors.accentAlt,
   },
   cancelButton: {
     backgroundColor: GlobalStyles.colors.background,
   },
-  deleteText: {
+  submitText: {
     color: GlobalStyles.colors.surface,
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
+  },
+  submitButtonPressed: {
+    backgroundColor: GlobalStyles.colors.accentAltPressed,
+  },
+  cancelButtonPressed: {
+    backgroundColor: GlobalStyles.colors.border,
   },
 });

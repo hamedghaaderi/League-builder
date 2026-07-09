@@ -77,7 +77,10 @@ const ImportModal = ({ visibility, onCancel }) => {
                     <View style={styles.inputContainer}>
                       <Pressable
                         onPress={() => handlePickFile(onChange)}
-                        style={styles.chooseButton}
+                        style={({ pressed }) => [
+                          styles.chooseButton,
+                          pressed && styles.pressed,
+                        ]}
                       >
                         <Ionicons
                           name="document"
@@ -101,12 +104,18 @@ const ImportModal = ({ visibility, onCancel }) => {
                               </Text>
                             </View>
                           </View>
-                          <Pressable onPress={() => reset()}>
-                            <Ionicons
-                              name="trash"
-                              size={20}
-                              color={GlobalStyles.colors.red}
-                            />
+                          <Pressable onPress={() => reset()} hitSlop={8}>
+                            {({ pressed }) => (
+                              <Ionicons
+                                name="trash"
+                                size={20}
+                                color={
+                                  pressed
+                                    ? GlobalStyles.colors.redPressed
+                                    : GlobalStyles.colors.red
+                                }
+                              />
+                            )}
                           </Pressable>
                         </View>
                       )}
@@ -116,14 +125,24 @@ const ImportModal = ({ visibility, onCancel }) => {
               />
             </View>
             <View style={styles.actions}>
-              <Pressable style={[styles.button, styles.importButton]}>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.importButton,
+                  pressed && styles.importButtonPressed,
+                ]}
+              >
                 <Text style={[styles.buttonText, styles.importText]}>
                   افزودن
                 </Text>
               </Pressable>
               <Pressable
                 onPress={onCancel}
-                style={[styles.button, styles.cancelButton]}
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.cancelButton,
+                  pressed && styles.pressed,
+                ]}
               >
                 <Text style={[styles.buttonText, styles.canceltext]}>
                   انصراف
@@ -260,5 +279,11 @@ const styles = StyleSheet.create({
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
+  },
+  importButtonPressed: {
+    backgroundColor: GlobalStyles.colors.primary,
+  },
+  pressed: {
+    backgroundColor: GlobalStyles.colors.border,
   },
 });

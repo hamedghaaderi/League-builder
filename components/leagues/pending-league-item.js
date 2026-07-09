@@ -21,7 +21,13 @@ const PendingLeagueItem = ({ league }) => {
 
   return (
     <>
-      <Pressable onPress={onItemPress} style={styles.container}>
+      <Pressable
+        onPress={onItemPress}
+        style={({ pressed }) => [
+          styles.container,
+          pressed && styles.containerPressed,
+        ]}
+      >
         <View style={styles.rightBar} />
         <View style={styles.content}>
           <View style={styles.informations}>
@@ -54,24 +60,38 @@ const PendingLeagueItem = ({ league }) => {
                 e.stopPropagation();
                 onSharePress();
               }}
+              hitSlop={8}
             >
-              <Ionicons
-                name="share-social"
-                size={22}
-                color={GlobalStyles.colors.secondary}
-              />
+              {({ pressed }) => (
+                <Ionicons
+                  name="share-social"
+                  size={22}
+                  color={
+                    pressed
+                      ? GlobalStyles.colors.primary
+                      : GlobalStyles.colors.secondary
+                  }
+                />
+              )}
             </Pressable>
             <Pressable
               onPress={(e) => {
                 e.stopPropagation();
                 setShowDeleteModal(true);
               }}
+              hitSlop={8}
             >
-              <Ionicons
-                name="trash"
-                size={22}
-                color={GlobalStyles.colors.red}
-              />
+              {({ pressed }) => (
+                <Ionicons
+                  name="trash"
+                  size={22}
+                  color={
+                    pressed
+                      ? GlobalStyles.colors.redPressed
+                      : GlobalStyles.colors.red
+                  }
+                />
+              )}
             </Pressable>
           </View>
         </View>
@@ -147,5 +167,8 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
     alignItems: "center",
     gap: 12,
+  },
+  containerPressed: {
+    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

@@ -69,7 +69,11 @@ const CompleteLeagueScreen = () => {
         <View style={styles.tabs}>
           <Pressable
             onPress={() => setIndex(1)}
-            style={[styles.tabItem, index === 1 && styles.activeTabItem]}
+            style={({ pressed }) => [
+              styles.tabItem,
+              index === 1 && styles.activeTabItem,
+              pressed && index !== 1 && styles.tabItemPressed
+             ]}
           >
             <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
               جدول
@@ -77,7 +81,11 @@ const CompleteLeagueScreen = () => {
           </Pressable>
           <Pressable
             onPress={() => setIndex(0)}
-            style={[styles.tabItem, index === 0 && styles.activeTabItem]}
+            style={({ pressed }) => [
+              styles.tabItem,
+              index === 0 && styles.activeTabItem,
+              pressed && index !== 0 && styles.tabItemPressed
+             ]}
           >
             <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
               بازی ها
@@ -193,5 +201,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: GlobalStyles.colors.surface,
     fontWeight: "600",
+  },
+  tabItemPressed: {
+    backgroundColor: GlobalStyles.colors.secondaryTransparent,
   },
 });
