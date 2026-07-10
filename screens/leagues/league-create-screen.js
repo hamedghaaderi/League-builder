@@ -23,7 +23,6 @@ const LeagueCreateScreen = ({ navigation }) => {
       ],
     },
   });
-  console.log("isValid: ", isValid);
   const { fields, append, remove } = useFieldArray({
     control,
     name: "teams",
@@ -40,17 +39,21 @@ const LeagueCreateScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: ({ tintColor }) => (
-        <Pressable
-          disabled={!isValid}
-          style={({ pressed }) => [
-            styles.submitButton,
-            { backgroundColor: tintColor },
-            pressed && isValid && styles.submitButtonPressed,
-            !isValid && styles.submitButtonDisabled,
-          ]}
-        >
-          <Text style={styles.submitText}>افزودن</Text>
-        </Pressable>
+        <View style={styles.submitButtonContainer}>
+          <Pressable
+            android_ripple={
+              isValid && { color: GlobalStyles.colors.winnerIcon }
+            }
+            disabled={!isValid}
+            style={[
+              styles.submitButton,
+              { backgroundColor: tintColor },
+              !isValid && styles.submitButtonDisabled,
+            ]}
+          >
+            <Text style={styles.submitText}>افزودن</Text>
+          </Pressable>
+        </View>
       ),
     });
   }, [isValid]);
@@ -124,34 +127,28 @@ const LeagueCreateScreen = ({ navigation }) => {
                 )}
               />
               <Pressable onPress={() => removeTeam(_index)} hitSlop={8}>
-                {({ pressed }) => (
-                  <Ionicons
-                    name="trash"
-                    size={19}
-                    color={
-                      pressed
-                        ? GlobalStyles.colors.redPressed
-                        : GlobalStyles.colors.red
-                    }
-                  />
-                )}
+                <Ionicons
+                  name="trash"
+                  size={19}
+                  color={GlobalStyles.colors.red}
+                />
               </Pressable>
             </View>
           ))}
-          <Pressable
-            style={({ pressed }) => [
-              styles.addTeamButton,
-              pressed && styles.addTeamButtonPressed,
-            ]}
-            onPress={() => append({ team: "", player: "" })}
-          >
-            <Text style={styles.addTeamText}>افزودن تیم</Text>
-            <Ionicons
-              name="add"
-              size={16}
-              color={GlobalStyles.colors.surface}
-            />
-          </Pressable>
+          <View style={styles.addTeamButtonContainer}>
+            <Pressable
+              android_ripple={{ color: GlobalStyles.colors.primaryDark }}
+              style={styles.addTeamButton}
+              onPress={() => append({ team: "", player: "" })}
+            >
+              <Text style={styles.addTeamText}>افزودن تیم</Text>
+              <Ionicons
+                name="add"
+                size={16}
+                color={GlobalStyles.colors.surface}
+              />
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -193,11 +190,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
+  addTeamButtonContainer: {
+    borderRadius: 12,
+    overflow: "hidden",
+  },
   addTeamButton: {
     flexDirection: "row",
     alignItems: "center",
     gap: 5,
-    borderRadius: 12,
     paddingVertical: 7,
     paddingLeft: 11,
     paddingRight: 6,
@@ -208,8 +208,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: GlobalStyles.colors.surface,
   },
-  submitButton: {
+  submitButtonContainer: {
     borderRadius: 12,
+    overflow: "hidden",
+  },
+  submitButton: {
     paddingVertical: 4,
     paddingHorizontal: 15,
   },
@@ -218,13 +221,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: GlobalStyles.colors.primary,
   },
-  submitButtonPressed: {
-    backgroundColor: GlobalStyles.colors.winnerIcon,
-  },
   submitButtonDisabled: {
     opacity: 0.65,
-  },
-  addTeamButtonPressed: {
-    backgroundColor: GlobalStyles.colors.primaryDark,
   },
 });

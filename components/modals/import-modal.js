@@ -75,20 +75,22 @@ const ImportModal = ({ visibility, onCancel }) => {
                 render={({ field: { onChange, value } }) => {
                   return (
                     <View style={styles.inputContainer}>
-                      <Pressable
-                        onPress={() => handlePickFile(onChange)}
-                        style={({ pressed }) => [
-                          styles.chooseButton,
-                          pressed && styles.pressed,
-                        ]}
-                      >
-                        <Ionicons
-                          name="document"
-                          size={20}
-                          color={GlobalStyles.colors.secondary}
-                        />
-                        <Text style={styles.chooseText}>انتخاب فایل</Text>
-                      </Pressable>
+                      <View style={styles.chooseButtonContainer}>
+                        <Pressable
+                          android_ripple={{
+                            color: GlobalStyles.colors.mainRipple,
+                          }}
+                          onPress={() => handlePickFile(onChange)}
+                          style={[styles.chooseButton]}
+                        >
+                          <Ionicons
+                            name="document"
+                            size={20}
+                            color={GlobalStyles.colors.secondary}
+                          />
+                          <Text style={styles.chooseText}>انتخاب فایل</Text>
+                        </Pressable>
+                      </View>
                       {value && (
                         <View style={styles.fileContainer}>
                           <View style={styles.fileContent}>
@@ -105,17 +107,11 @@ const ImportModal = ({ visibility, onCancel }) => {
                             </View>
                           </View>
                           <Pressable onPress={() => reset()} hitSlop={8}>
-                            {({ pressed }) => (
-                              <Ionicons
-                                name="trash"
-                                size={20}
-                                color={
-                                  pressed
-                                    ? GlobalStyles.colors.redPressed
-                                    : GlobalStyles.colors.red
-                                }
-                              />
-                            )}
+                            <Ionicons
+                              name="trash"
+                              size={20}
+                              color={GlobalStyles.colors.red}
+                            />
                           </Pressable>
                         </View>
                       )}
@@ -125,29 +121,27 @@ const ImportModal = ({ visibility, onCancel }) => {
               />
             </View>
             <View style={styles.actions}>
-              <Pressable
-                style={({ pressed }) => [
-                  styles.button,
-                  styles.importButton,
-                  pressed && styles.importButtonPressed,
-                ]}
-              >
-                <Text style={[styles.buttonText, styles.importText]}>
-                  افزودن
-                </Text>
-              </Pressable>
-              <Pressable
-                onPress={onCancel}
-                style={({ pressed }) => [
-                  styles.button,
-                  styles.cancelButton,
-                  pressed && styles.pressed,
-                ]}
-              >
-                <Text style={[styles.buttonText, styles.canceltext]}>
-                  انصراف
-                </Text>
-              </Pressable>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  android_ripple={{ color: GlobalStyles.colors.primary }}
+                  style={[styles.button, styles.importButton]}
+                >
+                  <Text style={[styles.buttonText, styles.importText]}>
+                    افزودن
+                  </Text>
+                </Pressable>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  android_ripple={{ color: GlobalStyles.colors.mainRipple }}
+                  onPress={onCancel}
+                  style={[styles.button, styles.cancelButton]}
+                >
+                  <Text style={[styles.buttonText, styles.canceltext]}>
+                    انصراف
+                  </Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -205,6 +199,10 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: GlobalStyles.colors.secondary,
   },
+  chooseButtonContainer: {
+    borderRadius: 14,
+    overflow: "hidden",
+  },
   chooseButton: {
     flexDirection: "row-reverse",
     alignItems: "center",
@@ -257,9 +255,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  button: {
+  buttonContainer: {
     flex: 1,
     borderRadius: 35,
+    overflow: "hidden",
+  },
+  button: {
     paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -279,11 +280,5 @@ const styles = StyleSheet.create({
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
-  },
-  importButtonPressed: {
-    backgroundColor: GlobalStyles.colors.primary,
-  },
-  pressed: {
-    backgroundColor: GlobalStyles.colors.border,
   },
 });

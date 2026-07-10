@@ -21,81 +21,77 @@ const PendingLeagueItem = ({ league }) => {
 
   return (
     <>
-      <Pressable
-        onPress={onItemPress}
-        style={({ pressed }) => [
-          styles.container,
-          pressed && styles.containerPressed,
-        ]}
-      >
-        <View style={styles.rightBar} />
-        <View style={styles.content}>
-          <View style={styles.informations}>
-            <Text style={styles.title}>لیگ اول</Text>
-            <View style={styles.detailsRow}>
-              <View style={styles.detailItem}>
-                <Ionicons
-                  name="people-outline"
-                  size={16}
-                  color={GlobalStyles.colors.accentAlt}
-                />
-                <Text style={styles.detailText}>4 تیم</Text>
-              </View>
-              <View style={styles.dot} />
-              <View style={styles.detailItem}>
-                <Ionicons
-                  name={true ? "repeat" : "arrow-forward"}
-                  size={16}
-                  color={GlobalStyles.colors.accentAlt}
-                />
-                <Text style={styles.detailText}>
-                  {true ? "رفت و برگشت" : "تک بازی"}
-                </Text>
+      <View style={styles.container}>
+        <Pressable
+          android_ripple={{ color: GlobalStyles.colors.mainRipple }}
+          onPress={onItemPress}
+          style={styles.card}
+        >
+          <View style={styles.rightBar} />
+          <View style={styles.content}>
+            <View style={styles.informations}>
+              <Text style={styles.title}>لیگ اول</Text>
+              <View style={styles.detailsRow}>
+                <View style={styles.detailItem}>
+                  <Ionicons
+                    name="people-outline"
+                    size={16}
+                    color={GlobalStyles.colors.accentAlt}
+                  />
+                  <Text style={styles.detailText}>4 تیم</Text>
+                </View>
+                <View style={styles.dot} />
+                <View style={styles.detailItem}>
+                  <Ionicons
+                    name={true ? "repeat" : "arrow-forward"}
+                    size={16}
+                    color={GlobalStyles.colors.accentAlt}
+                  />
+                  <Text style={styles.detailText}>
+                    {true ? "رفت و برگشت" : "تک بازی"}
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-          <View style={styles.actions}>
-            <Pressable
-              onPress={(e) => {
-                e.stopPropagation();
-                onSharePress();
-              }}
-              hitSlop={8}
-            >
-              {({ pressed }) => (
+            <View style={styles.actions}>
+              <Pressable
+                android_ripple={{
+                  color: GlobalStyles.colors.mainRipple,
+                  borderless: true,
+                }}
+                onPress={(e) => {
+                  e.stopPropagation();
+                  onSharePress();
+                }}
+                hitSlop={8}
+              >
                 <Ionicons
                   name="share-social"
                   size={22}
-                  color={
-                    pressed
-                      ? GlobalStyles.colors.primary
-                      : GlobalStyles.colors.secondary
-                  }
+                  color={GlobalStyles.colors.secondary}
                 />
-              )}
-            </Pressable>
-            <Pressable
-              onPress={(e) => {
-                e.stopPropagation();
-                setShowDeleteModal(true);
-              }}
-              hitSlop={8}
-            >
-              {({ pressed }) => (
+              </Pressable>
+              <Pressable
+                android_ripple={{
+                  color: GlobalStyles.colors.mainRipple,
+                  borderless: true,
+                }}
+                onPress={(e) => {
+                  e.stopPropagation();
+                  setShowDeleteModal(true);
+                }}
+                hitSlop={8}
+              >
                 <Ionicons
                   name="trash"
                   size={22}
-                  color={
-                    pressed
-                      ? GlobalStyles.colors.redPressed
-                      : GlobalStyles.colors.red
-                  }
+                  color={GlobalStyles.colors.red}
                 />
-              )}
-            </Pressable>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
       {showDeleteModal && (
         <DeleteModal
           visibility={showDeleteModal}
@@ -110,11 +106,13 @@ export default PendingLeagueItem;
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 14,
+    overflow: "hidden",
+  },
+  card: {
     flexDirection: "row-reverse",
     alignItems: "center",
     backgroundColor: GlobalStyles.colors.border,
-    borderRadius: 14,
-    overflow: "hidden",
   },
   rightBar: {
     width: 6,
@@ -167,8 +165,5 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
     alignItems: "center",
     gap: 12,
-  },
-  containerPressed: {
-    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

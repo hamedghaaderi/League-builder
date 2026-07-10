@@ -24,43 +24,48 @@ const TabBar = ({ state, descriptors, navigation }) => {
             const isFocused = state.index === index;
 
             return (
-              <Pressable
-                key={route.key}
-                style={({ pressed }) => [
-                  styles.tabButton,
-                  isFocused && styles.activeTabButton,
-                  pressed && !isFocused && styles.tabButtonPressed,
-                ]}
-                onPress={() => navigation.navigate(route.name)}
-              >
-                <Text
-                  style={[styles.tabText, isFocused && styles.activeTabText]}
+              <View key={route.key} style={styles.tabButtonContainer}>
+                <Pressable
+                  android_ripple={
+                    !isFocused && {
+                      color: GlobalStyles.colors.primaryTransparent,
+                    }
+                  }
+                  style={[
+                    styles.tabButton,
+                    isFocused && styles.activeTabButton,
+                  ]}
+                  onPress={() => navigation.navigate(route.name)}
                 >
-                  {title}
-                </Text>
-                {title === "لیگ ها" && (
-                  <Ionicons
-                    name="trophy"
-                    size={18}
-                    color={
-                      isFocused
-                        ? GlobalStyles.colors.accent
-                        : GlobalStyles.colors.surface
-                    }
-                  />
-                )}
-                {title === "توسعه دهنده" && (
-                  <Ionicons
-                    name="code-slash"
-                    size={18}
-                    color={
-                      isFocused
-                        ? GlobalStyles.colors.accent
-                        : GlobalStyles.colors.surface
-                    }
-                  />
-                )}
-              </Pressable>
+                  <Text
+                    style={[styles.tabText, isFocused && styles.activeTabText]}
+                  >
+                    {title}
+                  </Text>
+                  {title === "لیگ ها" && (
+                    <Ionicons
+                      name="trophy"
+                      size={18}
+                      color={
+                        isFocused
+                          ? GlobalStyles.colors.accent
+                          : GlobalStyles.colors.surface
+                      }
+                    />
+                  )}
+                  {title === "توسعه دهنده" && (
+                    <Ionicons
+                      name="code-slash"
+                      size={18}
+                      color={
+                        isFocused
+                          ? GlobalStyles.colors.accent
+                          : GlobalStyles.colors.surface
+                      }
+                    />
+                  )}
+                </Pressable>
+              </View>
             );
           })}
         </View>
@@ -102,10 +107,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     padding: 10,
   },
+  tabButtonContainer: {
+    flex: 1,
+    borderRadius: 35,
+    overflow: "hidden",
+  },
   tabButton: {
     borderRadius: 35,
     flexDirection: "row",
-    flex: 1,
     alignItems: "center",
     gap: 15,
     justifyContent: "center",
@@ -122,8 +131,5 @@ const styles = StyleSheet.create({
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
-  },
-  tabButtonPressed: {
-    backgroundColor: GlobalStyles.colors.primaryTransparent,
   },
 });

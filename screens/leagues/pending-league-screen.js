@@ -49,51 +49,60 @@ const PendingLeagueScreen = () => {
               {true ? "رفت و برگشت" : "تک بازی"}
             </Text>
           </View>
-          <Pressable
-            style={styles.completionButton}
-            onPress={() => setShowCompletionModal(true)}
-            hitSlop={8}
-          >
-            {({ pressed }) => (
+          <View style={styles.completionButton}>
+            <Pressable
+              android_ripple={{
+                color: GlobalStyles.colors.secondaryTransparent,
+                borderless: true,
+              }}
+              onPress={() => setShowCompletionModal(true)}
+              hitSlop={8}
+            >
               <Ionicons
-                name="checkmark-circle"
-                color={
-                  pressed
-                    ? GlobalStyles.colors.winnerIcon
-                    : GlobalStyles.colors.accent
-                }
-                size={22}
+                name="checkmark"
+                color={GlobalStyles.colors.accent}
+                size={25}
               />
-            )}
-          </Pressable>
+            </Pressable>
+          </View>
         </View>
       </View>
       <View style={styles.tabsWrapper}>
         <View style={styles.tabs}>
-          <Pressable
-            onPress={() => setIndex(1)}
-            style={({ pressed }) => [
-              styles.tabItem,
-              index === 1 && styles.activeTabItem,
-              pressed && index !== 1 && styles.tabItemPressed,
-            ]}
-          >
-            <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
-              جدول
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setIndex(0)}
-            style={({ pressed }) => [
-              styles.tabItem,
-              index === 0 && styles.activeTabItem,
-              pressed && index !== 0 && styles.tabItemPressed,
-            ]}
-          >
-            <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
-              بازی ها
-            </Text>
-          </Pressable>
+          <View style={styles.tabItemContainer}>
+            <Pressable
+              android_ripple={
+                index !== 1 && {
+                  color: GlobalStyles.colors.secondaryTransparent,
+                }
+              }
+              onPress={() => setIndex(1)}
+              style={[styles.tabItem, index === 1 && styles.activeTabItem]}
+            >
+              <Text
+                style={[styles.tabText, index === 1 && styles.activeTabText]}
+              >
+                جدول
+              </Text>
+            </Pressable>
+          </View>
+          <View style={styles.tabItemContainer}>
+            <Pressable
+              android_ripple={
+                index !== 0 && {
+                  color: GlobalStyles.colors.secondaryTransparent,
+                }
+              }
+              onPress={() => setIndex(0)}
+              style={[styles.tabItem, index === 0 && styles.activeTabItem]}
+            >
+              <Text
+                style={[styles.tabText, index === 0 && styles.activeTabText]}
+              >
+                بازی ها
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </View>
       <TabView
@@ -160,6 +169,12 @@ const styles = StyleSheet.create({
   completionButton: {
     position: "absolute",
     left: 0,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
   },
   tabsWrapper: {
     backgroundColor: GlobalStyles.colors.background,
@@ -173,10 +188,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  tabItem: {
+  tabItemContainer: {
     flex: 1,
-    paddingVertical: 7,
     borderRadius: 25,
+    overflow: "hidden",
+  },
+  tabItem: {
+    paddingVertical: 7,
     alignItems: "center",
   },
   tabText: {
@@ -189,8 +207,5 @@ const styles = StyleSheet.create({
   },
   activeTabText: {
     color: GlobalStyles.colors.accent,
-  },
-  tabItemPressed: {
-    backgroundColor: GlobalStyles.colors.secondaryTransparent,
   },
 });

@@ -15,49 +15,47 @@ const CompleteLeagueItem = ({ league }) => {
 
   return (
     <>
-      <Pressable
-        onPress={onItemPress}
-        style={({ pressed }) => [
-          styles.container,
-          pressed && styles.containerPressed,
-        ]}
-      >
-        <View style={styles.rightBar} />
-        <View style={styles.content}>
-          <View style={styles.informations}>
-            <Text style={styles.title}>لیگ اول</Text>
-            <View style={styles.winnerItem}>
-              <View style={styles.trophyCircle}>
-                <Ionicons
-                  name="ribbon"
-                  size={13}
-                  color={GlobalStyles.colors.winnerIcon}
-                />
+      <View style={styles.container}>
+        <Pressable
+          android_ripple={{ color: GlobalStyles.colors.mainRipple }}
+          onPress={onItemPress}
+          style={styles.card}
+        >
+          <View style={styles.rightBar} />
+          <View style={styles.content}>
+            <View style={styles.informations}>
+              <Text style={styles.title}>لیگ اول</Text>
+              <View style={styles.winnerItem}>
+                <View style={styles.trophyCircle}>
+                  <Ionicons
+                    name="ribbon"
+                    size={13}
+                    color={GlobalStyles.colors.winnerIcon}
+                  />
+                </View>
+                <Text style={styles.winnerText}>منچسترسیتی - حامد</Text>
               </View>
-              <Text style={styles.winnerText}>منچسترسیتی - حامد</Text>
             </View>
-          </View>
-          <Pressable
-            onPress={(e) => {
-              e.stopPropagation();
-              setShowDeleteModal(true);
-            }}
-            hitSlop={8}
-          >
-            {({ pressed }) => (
+            <Pressable
+              android_ripple={{
+                color: GlobalStyles.colors.mainRipple,
+                borderless: true,
+              }}
+              onPress={(e) => {
+                e.stopPropagation();
+                setShowDeleteModal(true);
+              }}
+              hitSlop={8}
+            >
               <Ionicons
                 name="trash"
                 size={22}
-                color={
-                  pressed
-                    ? GlobalStyles.colors.redPressed
-                    : GlobalStyles.colors.red
-                }
+                color={GlobalStyles.colors.red}
               />
-            )}
-          </Pressable>
-        </View>
-      </Pressable>
+            </Pressable>
+          </View>
+        </Pressable>
+      </View>
       {showDeleteModal && (
         <DeleteModal
           visibility={showDeleteModal}
@@ -72,11 +70,13 @@ export default CompleteLeagueItem;
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 14,
+    overflow: "hidden",
+  },
+  card: {
     flexDirection: "row-reverse",
     alignItems: "center",
     backgroundColor: GlobalStyles.colors.border,
-    borderRadius: 14,
-    overflow: "hidden",
   },
   rightBar: {
     width: 6,
@@ -123,8 +123,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: GlobalStyles.colors.winnerShadow,
     elevation: 3,
-  },
-  containerPressed: {
-    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

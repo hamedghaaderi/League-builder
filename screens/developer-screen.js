@@ -62,16 +62,15 @@ const DeveloperScreen = () => {
           <Text style={styles.title}>راه‌های ارتباطی</Text>
           <View style={styles.links}>
             {links.map((_link, _index) => (
-              <Pressable
-                key={_index}
-                onPress={() => goToLink(_link.url)}
-                style={({ pressed }) => [
-                  styles.linkItem,
-                  pressed && styles.linkItemPressed,
-                ]}
-              >
-                <_link.logo />
-              </Pressable>
+              <View style={styles.linkItemContainer} key={_index}>
+                <Pressable
+                  android_ripple={{ color: GlobalStyles.colors.mainRipple }}
+                  onPress={() => goToLink(_link.url)}
+                  style={styles.linkItem}
+                >
+                  <_link.logo />
+                </Pressable>
+              </View>
             ))}
           </View>
         </View>
@@ -128,15 +127,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 20,
   },
-  linkItem: {
+  linkItemContainer: {
     width: "20%",
-    backgroundColor: GlobalStyles.colors.border,
     borderRadius: 14,
+    overflow: "hidden",
+  },
+  linkItem: {
+    flex: 1,
+    backgroundColor: GlobalStyles.colors.border,
     padding: 16,
     alignItems: "center",
     justifyContent: "center",
-  },
-  linkItemPressed: {
-    backgroundColor: GlobalStyles.colors.borderTransparent,
   },
 });

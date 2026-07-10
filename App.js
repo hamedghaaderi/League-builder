@@ -89,18 +89,14 @@ export default function App() {
                 return (
                   <>
                     <Pressable
+                      android_ripple={{
+                        color: GlobalStyles.colors.secondaryTransparent,
+                        borderless: true,
+                      }}
                       onPress={() => setShowEditModal(true)}
                       hitSlop={8}
                     >
-                      {({ pressed }) => (
-                        <Ionicons
-                          name="pencil"
-                          size={22}
-                          color={
-                            pressed ? GlobalStyles.colors.winnerIcon : tintColor
-                          }
-                        />
-                      )}
+                      <Ionicons name="pencil" size={22} color={tintColor} />
                     </Pressable>
                     {showEditModal && (
                       <EditModal

@@ -7,7 +7,6 @@ const GlobalStyles = {
     secondaryTransparent: "#345dff62",
     accent: "#F2C75C",
     accentAlt: "#C01EFF",
-    accentAltPressed: "#cf56ff",
     background: "#F9FAFC",
     surface: "#FFFFFF",
     textPrimary: "#0A1033",
@@ -19,10 +18,12 @@ const GlobalStyles = {
     gradient50: "rgba(236, 239, 252, 1)",
     gradient100: "rgba(217, 220, 233, 1)",
     red: "#e01c2cff",
-    redPressed: "#bb0010",
     winnerIcon: "#CFA23A",
     winnerBackground: "#ffd7001f",
     winnerShadow: "#FFD700",
+    mainRipple: "#00000014",
+    redRipple: "#bb0010",
+    accentAltRipple: "#a400e4",
   },
 };
 

@@ -67,30 +67,40 @@ const CompleteLeagueScreen = () => {
       </View>
       <View style={styles.tabsWrapper}>
         <View style={styles.tabs}>
-          <Pressable
-            onPress={() => setIndex(1)}
-            style={({ pressed }) => [
-              styles.tabItem,
-              index === 1 && styles.activeTabItem,
-              pressed && index !== 1 && styles.tabItemPressed
-             ]}
-          >
-            <Text style={[styles.tabText, index === 1 && styles.activeTabText]}>
-              جدول
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setIndex(0)}
-            style={({ pressed }) => [
-              styles.tabItem,
-              index === 0 && styles.activeTabItem,
-              pressed && index !== 0 && styles.tabItemPressed
-             ]}
-          >
-            <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
-              بازی ها
-            </Text>
-          </Pressable>
+          <View style={styles.tabItemContainer}>
+            <Pressable
+              android_ripple={
+                index !== 1 && {
+                  color: GlobalStyles.colors.secondaryTransparent,
+                }
+              }
+              onPress={() => setIndex(1)}
+              style={[styles.tabItem, index === 1 && styles.activeTabItem]}
+            >
+              <Text
+                style={[styles.tabText, index === 1 && styles.activeTabText]}
+              >
+                جدول
+              </Text>
+            </Pressable>
+          </View>
+          <View style={styles.tabItemContainer}>
+            <Pressable
+              android_ripple={
+                index !== 0 && {
+                  color: GlobalStyles.colors.secondaryTransparent,
+                }
+              }
+              onPress={() => setIndex(0)}
+              style={[styles.tabItem, index === 0 && styles.activeTabItem]}
+            >
+              <Text
+                style={[styles.tabText, index === 0 && styles.activeTabText]}
+              >
+                بازی ها
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </View>
       <TabView
@@ -159,10 +169,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  tabItem: {
+  tabItemContainer: {
     flex: 1,
-    paddingVertical: 7,
     borderRadius: 25,
+    overflow: "hidden",
+  },
+  tabItem: {
+    paddingVertical: 7,
     alignItems: "center",
   },
   tabText: {
@@ -201,8 +214,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: GlobalStyles.colors.surface,
     fontWeight: "600",
-  },
-  tabItemPressed: {
-    backgroundColor: GlobalStyles.colors.secondaryTransparent,
   },
 });

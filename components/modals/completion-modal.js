@@ -39,29 +39,27 @@ const CompletionModal = ({ visibility, onCancel }) => {
               </Text>
             </View>
             <View style={styles.actions}>
-              <Pressable
-                style={({ pressed }) => [
-                  styles.button,
-                  styles.completionButton,
-                  pressed && styles.completionButtonPressed,
-                ]}
-              >
-                <Text style={[styles.buttonText, styles.completionText]}>
-                  اتمام
-                </Text>
-              </Pressable>
-              <Pressable
-                onPress={onCancel}
-                style={({ pressed }) => [
-                  styles.button,
-                  styles.cancelButton,
-                  pressed && styles.cancelButtonPressed,
-                ]}
-              >
-                <Text style={[styles.buttonText, styles.canceltext]}>
-                  انصراف
-                </Text>
-              </Pressable>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  android_ripple={{ color: GlobalStyles.colors.accent }}
+                  style={[styles.button, styles.completionButton]}
+                >
+                  <Text style={[styles.buttonText, styles.completionText]}>
+                    اتمام
+                  </Text>
+                </Pressable>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  android_ripple={{ color: GlobalStyles.colors.mainRipple }}
+                  onPress={onCancel}
+                  style={[styles.button, styles.cancelButton]}
+                >
+                  <Text style={[styles.buttonText, styles.canceltext]}>
+                    انصراف
+                  </Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -117,9 +115,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  button: {
+  buttonContainer: {
     flex: 1,
     borderRadius: 35,
+    overflow: "hidden",
+  },
+  button: {
     paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -139,11 +140,5 @@ const styles = StyleSheet.create({
   },
   canceltext: {
     color: GlobalStyles.colors.textPrimary,
-  },
-  completionButtonPressed: {
-    backgroundColor: GlobalStyles.colors.accent,
-  },
-  cancelButtonPressed: {
-    backgroundColor: GlobalStyles.colors.border,
   },
 });
