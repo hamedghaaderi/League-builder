@@ -60,7 +60,7 @@ export default function App() {
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator
-          screenOptions={{
+          screenOptions={({ navigation }) => ({
             headerStyle: {
               backgroundColor: GlobalStyles.colors.primary,
             },
@@ -68,7 +68,20 @@ export default function App() {
             headerTitleStyle: { fontFamily: "samim" },
             headerTitleAlign: "center",
             animation: "fade",
-          }}
+            headerBackVisible: false,
+            headerLeft: ({ tintColor }) => (
+              <Pressable
+                android_ripple={{
+                  color: GlobalStyles.colors.secondaryTransparent,
+                  borderless: true,
+                }}
+                hitSlop={8}
+                onPress={() => navigation.goBack()}
+              >
+                <Ionicons name="arrow-back" size={24} color={tintColor} />
+              </Pressable>
+            ),
+          })}
         >
           <Stack.Screen
             name="Tabs"
