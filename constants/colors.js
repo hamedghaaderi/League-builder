@@ -12,6 +12,18 @@ const GlobalStyles = {
     textPrimary: "#0A1033",
     textSecondary: "#1A1D26",
     border: "#E6E8EC",
+    borderTransparent: "#e6e8ec67",
+    backdrop: "#00000062",
+    gradient0: "rgba(255, 255, 255, 0)",
+    gradient50: "rgba(236, 239, 252, 1)",
+    gradient100: "rgba(217, 220, 233, 1)",
+    red: "#e01c2cff",
+    winnerIcon: "#CFA23A",
+    winnerBackground: "#ffd7001f",
+    winnerShadow: "#FFD700",
+    mainRipple: "#00000014",
+    redRipple: "#bb0010",
+    accentAltRipple: "#a400e4",
   },
 };
 
