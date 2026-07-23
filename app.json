@@ -3,7 +3,7 @@
     "name": "league-builder",
     "slug": "league-builder",
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -24,8 +24,6 @@
     "web": {
       "favicon": "./assets/images/logo.png"
     },
-    "plugins": [
-      "expo-font"
-    ]
+    "plugins": ["expo-font"]
   }
 }

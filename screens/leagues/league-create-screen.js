@@ -63,6 +63,7 @@ const LeagueCreateScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         <Controller
           name="title"

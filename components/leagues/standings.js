@@ -7,12 +7,12 @@ const Standings = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.detailsRow}>
-          <Text style={styles.detail}>امتیاز</Text>
-          <Text style={styles.detail}>تفاضل</Text>
-          <Text style={styles.detail}>باخت</Text>
-          <Text style={styles.detail}>مساوی</Text>
-          <Text style={styles.detail}>برد</Text>
-          <Text style={styles.detail}>بازی</Text>
+          <Text style={styles.detail}>Pts</Text>
+          <Text style={styles.detail}>GD</Text>
+          <Text style={styles.detail}>L</Text>
+          <Text style={styles.detail}>D</Text>
+          <Text style={styles.detail}>W</Text>
+          <Text style={styles.detail}>Pl</Text>
         </View>
         <View>
           <Text style={styles.team}>تیم</Text>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "60%",
+    width: "50%",
   },
   detail: {
     fontFamily: "samim",

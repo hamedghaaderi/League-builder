@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   team: {
-    flex: 35,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -202,10 +202,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   result: {
-    flex: 30,
+    flex: 1,
     flexDirection: "row-reverse",
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
     gap: 7,
   },
   pickerText: {

@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
     gap: 20,
     padding: 10,
     borderRadius: 14,
-    backgroundColor: GlobalStyles.colors.border
+    backgroundColor: GlobalStyles.colors.border,
   },
   detailsRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "60%",
+    width: "50%",
   },
   detail: {
     fontFamily: "samim",
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-end",
-    width: "35%",
+    width: "45%",
     gap: 8,
   },
   team: {

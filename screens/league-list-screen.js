@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -14,11 +14,14 @@ import { SceneMap, TabView } from "react-native-tab-view";
 import PendingLeagues from "../components/leagues/pending-leagues";
 import CompleteLeagues from "../components/leagues/complete-leagues";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFocusEffect } from "@react-navigation/native";
 
 const LeagueListScreen = ({ navigation }) => {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [showAddOptions, setShowAddOptions] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+
+  useFocusEffect(useCallback(() => () => setShowAddOptions(false), []));
 
   const routes = [{ key: "complete" }, { key: "pending" }];
 
@@ -126,7 +129,10 @@ const LeagueListScreen = ({ navigation }) => {
       <Animated.View style={[styles.importButton, { transform: [{ scale }] }]}>
         <Pressable
           android_ripple={{ color: GlobalStyles.colors.primary }}
-          onPress={() => setShowImportModal(true)}
+          onPress={() => {
+            setShowAddOptions(false);
+            setShowImportModal(true);
+          }}
           style={styles.smallButtonPressable}
         >
           <Ionicons

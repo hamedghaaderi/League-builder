@@ -78,7 +78,7 @@ export default function App() {
                 hitSlop={8}
                 onPress={() => navigation.goBack()}
               >
-                <Ionicons name="arrow-back" size={24} color={tintColor} />
+                <Ionicons name="arrow-back" size={22} color={tintColor} />
               </Pressable>
             ),
           })}
